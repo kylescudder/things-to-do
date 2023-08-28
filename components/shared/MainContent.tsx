@@ -6,6 +6,7 @@ import RightSidebar from "./RightSidebar";
 import { IIcon } from "@/lib/models/icon";
 import { useState } from "react";
 import CustomThemeProvider from "@/components/shared/CustomThemeProvider";
+import { IToDo } from "@/lib/models/todo";
 
 export const MainContent = (props: {
   categories: ICategory[];
