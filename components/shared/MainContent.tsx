@@ -4,14 +4,13 @@ import { ICategory } from "@/lib/models/category";
 import LeftSidebar from "./LeftSidebar";
 import RightSidebar from "./RightSidebar";
 import { IIcon } from "@/lib/models/icon";
-import mongoose from "mongoose";
 import { useState } from "react";
 import CustomThemeProvider from "@/components/shared/CustomThemeProvider";
 
 export const MainContent = (props: {
   categories: ICategory[];
   icons: IIcon[];
-  userId: mongoose.Types.ObjectId;
+  userId: string;
   children: React.ReactNode;
 }) => {
   const [categoryList, setCategoryList] = useState<ICategory[]>(

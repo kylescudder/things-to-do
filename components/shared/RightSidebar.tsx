@@ -4,13 +4,12 @@ import { ICategory } from "@/lib/models/category";
 import { IIcon } from "@/lib/models/icon";
 import AddToDo from "../forms/AddToDo";
 import AddCategory from "../forms/AddCategory";
-import mongoose from "mongoose";
 import { useEffect, useState } from "react";
 
 export default function RightSidebar(props: {
   categories: ICategory[];
   icons: IIcon[];
-  userId: mongoose.Types.ObjectId;
+  userId: string;
   func: (categories: ICategory[]) => void;
   newToDo: (todo: IToDo) => void;
 }) {

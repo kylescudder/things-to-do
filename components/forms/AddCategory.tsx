@@ -11,7 +11,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { IIcon } from "@/lib/models/icon";
-import mongoose, { Types } from "mongoose";
 import { addCategory } from "@/lib/actions/category.actions";
 import { ICategory } from "@/lib/models/category";
 import SelectElem from "../ui/select";
@@ -20,8 +19,8 @@ import { useState } from "react";
 
 const AddCategory = (props: {
   icons: IIcon[];
-  userId: mongoose.Types.ObjectId;
   func: (categories: ICategory) => void;
+  userId: string;
 }) => {
   const [icon, setIcon] = useState("");
   const options: IOption[] = [];
@@ -45,10 +44,10 @@ const AddCategory = (props: {
   }
   const onSubmit = async (values: formUser) => {
     const payload: ICategory = {
-      _id: new Types.ObjectId(),
+      _id: "",
       text: values.text,
       icon: icon,
-      userId: new Types.ObjectId(props.userId),
+      userId: props.userId,
     };
     const newCat = await addCategory(payload);
     props.func(newCat);

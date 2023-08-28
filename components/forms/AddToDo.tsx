@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
-import mongoose, { Types } from "mongoose";
 import { IToDo } from "@/lib/models/todo";
 import { ICategory } from "@/lib/models/category";
 import DatePicker from "react-datepicker";
@@ -42,15 +41,14 @@ const AddToDo = (props: { categories: ICategory[] }) => {
   interface formUser {
     text: string;
     targetDate: Date;
-    categoryId: mongoose.Types.ObjectId;
+    categoryId: string;
     completed: boolean;
   }
   const onSubmit = async (values: formUser) => {
     const payload: IToDo = {
-      _id: new Types.ObjectId(),
       text: values.text,
       targetDate: startDate,
-      categoryId: new mongoose.Types.ObjectId(categoryId),
+      categoryId: categoryId,
       completed: values.completed,
     };
     const newToDo: ToDo = await addToDo(payload);
