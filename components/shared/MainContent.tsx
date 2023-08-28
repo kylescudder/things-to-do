@@ -7,11 +7,12 @@ import { IIcon } from "@/lib/models/icon";
 import { useState } from "react";
 import CustomThemeProvider from "@/components/shared/CustomThemeProvider";
 import { IToDo } from "@/lib/models/todo";
+import { ObjectId } from "bson";
 
 export const MainContent = (props: {
   categories: ICategory[];
   icons: IIcon[];
-  userId: string;
+  userId: ObjectId;
   children: React.ReactNode;
 }) => {
   const [categoryList, setCategoryList] = useState<ICategory[]>(
