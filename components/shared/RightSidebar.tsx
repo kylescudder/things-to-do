@@ -5,6 +5,7 @@ import { IIcon } from "@/lib/models/icon";
 import AddToDo from "../forms/AddToDo";
 import AddCategory from "../forms/AddCategory";
 import { useEffect, useState } from "react";
+import { IToDo } from "@/lib/models/todo";
 
 export default function RightSidebar(props: {
   categories: ICategory[];
