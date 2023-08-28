@@ -82,7 +82,7 @@ const AddToDo = (props: {
                   maxLength={100}
                   max={100}
                   type="text"
-                  className="account-form_input no-focus bg-light-2 dark:bg-dark-2"
+                  className="account-form_input no-focus dark:bg-dark-2"
                   placeholder="What do you want to do?"
                   {...field}
                 />
