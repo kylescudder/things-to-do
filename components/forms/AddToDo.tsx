@@ -19,7 +19,10 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { addToDo } from "@/lib/actions/todo.actions";
 
-const AddToDo = (props: { categories: ICategory[] }) => {
+const AddToDo = (props: {
+  categories: ICategory[];
+  func: (todo: IToDo) => void;
+}) => {
   const router = useRouter();
   const [startDate, setStartDate] = useState(new Date());
   const [categoryId, setCategoryId] = useState("");
@@ -44,14 +47,14 @@ const AddToDo = (props: { categories: ICategory[] }) => {
     categoryId: string;
     completed: boolean;
   }
-    const payload: IToDo = {
   const onSubmit = async (values: FormUser) => {
+    const payload: IToDo = {
       text: values.text,
       targetDate: startDate,
       categoryId: categoryId,
       completed: values.completed,
     };
-    const newToDo: ToDo = await addToDo(payload);
+    const newToDo: IToDo = await addToDo(payload);
     props.func(newToDo);
     router.refresh();
   };
