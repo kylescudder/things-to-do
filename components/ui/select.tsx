@@ -34,7 +34,7 @@ export const SelectElem = (props: {
       options={props.options}
       getOptionLabel={(e) => (
         <div style={{ display: "flex", alignItems: "center" }}>
-          <Icon name={e.icon} stroke="1" strokeLinejoin="miter" />
+          <Icon name={e.icon} stroke="1" strokeLinejoin="miter" isActive={false} />
           <span style={{ marginLeft: 5 }}>{e.text}</span>
         </div>
       )}
