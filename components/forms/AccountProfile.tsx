@@ -41,7 +41,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
   }
   const onSubmit = async (values: formUser) => {
     const payload: IUser = {
-      _id: new Types.ObjectId(),
+      _id: "",
       username: values.username,
       name: values.name,
       bio: values.bio,
