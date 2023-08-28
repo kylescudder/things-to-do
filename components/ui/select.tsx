@@ -1,14 +1,15 @@
 import Select from "react-select";
 import Icon from "../shared/Icon";
 import IOption from "@/lib/models/options";
-import { useState } from "react";
 import { ICategory } from "@/lib/models/category";
+import { useTheme } from "next-themes";
 
 export const SelectElem = (props: { options: IOption[]; func }) => {
   const handleSelectChange = (selectedOption: ICategory) => {
     props.func(selectedOption);
   };
-  const darkMode: boolean = true;
+  const { theme, setTheme } = useTheme();
+  const darkMode = theme === "light" ? false : true;
   return (
     <Select
       required={true}

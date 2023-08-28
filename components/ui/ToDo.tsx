@@ -17,7 +17,7 @@ export default function ToDo(todoItem: IToDo) {
   };
   return (
     <div
-      className={`bg-light-2 dark:bg-dark-4 h-full cursor-pointer rounded-2xl shadow-xl ${
+      className={`dark:bg-dark-4 h-full cursor-pointer rounded-2xl shadow-xl ${
         todoItem.completed ? "dark:shadow-slate-300/60 shadow-blue-300/60" : ""
       } todoItem my-8 flex items-center justify-between`}
       onClick={handleTodoClick}
@@ -26,7 +26,7 @@ export default function ToDo(todoItem: IToDo) {
     >
       <div className={`flex ${data?.completed ? "completed" : ""}`}>
         <div className="p-4">
-          <span className="md:text-2xl text-sm font-medium text-dark-2 dark:text-dark-2 dark:text-white inline-block align-middle">
+          <span className="md:text-2xl text-sm font-medium text-dark-2 dark:text-white inline-block align-middle">
             {todoItem.text}
           </span>
         </div>

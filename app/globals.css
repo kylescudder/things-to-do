@@ -15,9 +15,6 @@
   .topbar {
     @apply fixed top-0 z-30 flex w-full items-center justify-between bg-light-2 dark:bg-dark-2 px-6 py-3;
   }
-  .leftsidebar {
-    @apply sticky left-0 top-0 z-20 flex h-screen w-fit flex-col justify-between overflow-auto border-r border-r-dark-4 bg-light-2 dark:bg-dark-2 pb-5 pt-28 max-md:hidden;
-  }
 
   .rightsidebar {
     @apply sticky right-0 top-0 z-20 flex h-screen w-fit flex-col justify-between gap-12 overflow-auto border-l border-l-dark-4 bg-light-2 dark:bg-dark-2 px-10 pb-6 pt-28 max-xl:hidden;
@@ -137,7 +134,7 @@
 
 /* Apply this class to the react-datepicker input */
 .react-datepicker__input-container input {
-  @apply bg-light-2 dark:bg-dark-2 text-dark-2 dark:text-light-1;
+  @apply dark:bg-dark-2 text-dark-2 dark:text-light-1;
   padding: 8px; /* Match the padding of react-select input */
   border: 1px solid #ccc; /* Match the border style of react-select input */
   border-radius: 4px;
@@ -153,7 +150,7 @@
 
 /* Apply this class to the react-datepicker calendar header */
 .react-datepicker__header {
-  @apply bg-light-2 dark:bg-dark-2;
+  @apply bg-white dark:bg-dark-2 !important;
   border-bottom: none; /* Remove the border at the bottom */
   padding: 10px;
   text-align: center;
@@ -164,7 +161,7 @@
   @apply text-dark-2 dark:text-light-1;
 }
 .react-datepicker__month-container {
-  @apply bg-light-2 dark:bg-dark-2;
+  @apply dark:bg-dark-2;
 }
 .react-datepicker__week > * {
   @apply text-dark-2 dark:text-light-2;
@@ -175,7 +172,7 @@
 /* Apply this class to the react-datepicker month and year dropdowns */
 .react-datepicker__month-dropdown,
 .react-datepicker__year-dropdown {
-  @apply bg-light-2 dark:bg-dark-2;
+  @apply dark:bg-dark-2;
   border: 1px solid #ccc; /* Match the border style of react-select dropdown options */
   border-radius: 4px;
   padding: 5px;

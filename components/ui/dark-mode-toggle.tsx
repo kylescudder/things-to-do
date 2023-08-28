@@ -1,42 +1,29 @@
-import { useEffect, useState } from "react";
-import { Label } from "./label";
+"use client";
+
+import { useState, useEffect } from "react";
+import { useTheme } from "next-themes";
+import { Label } from "@radix-ui/react-label";
 
 export const DarkModeToggle = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem("color-theme");
-    setIsDarkMode(storedTheme === "dark");
+    setMounted(true);
   }, []);
 
-  const toggleTheme = () => {
-    if (isDarkMode) {
-      setLightTheme();
-    } else {
-      setDarkTheme();
-    }
-  };
-
-  const setLightTheme = () => {
-    document.documentElement.classList.remove("dark");
-    localStorage.setItem("color-theme", "light");
-    setIsDarkMode(false);
-  };
-
-  const setDarkTheme = () => {
-    document.documentElement.classList.add("dark");
-    localStorage.setItem("color-theme", "dark");
-    setIsDarkMode(true);
-  };
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <div>
       <input
         type="checkbox"
         id="toggle"
-        checked={isDarkMode}
+        checked={theme === "light" ? false : true}
         className="toggle--checkbox"
-        onChange={toggleTheme}
+        onChange={() => setTheme(theme === "dark" ? "light" : "dark")}
       />
       <Label htmlFor="toggle" className="toggle--label float-right mr-2">
         <span className="toggle--label-background" />
