@@ -53,7 +53,8 @@ const AddToDo = (props: { categories: ICategory[] }) => {
       categoryId: new mongoose.Types.ObjectId(categoryId),
       completed: values.completed,
     };
-    await addToDo(payload);
+    const newToDo: ToDo = await addToDo(payload);
+    props.func(newToDo);
     router.refresh();
   };
 

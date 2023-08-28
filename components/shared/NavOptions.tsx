@@ -7,7 +7,7 @@ import Icon from "./Icon";
 import { ICategory } from "@/lib/models/category";
 import HoldToDeleteComponent from "../ui/hold-to-delete-button";
 import { deleteToast } from "@/lib/actions/toast.actions";
-import { deleteCategory } from "@/lib/actions/category.actions";
+import { deleteCategory, getCategoryCount } from "@/lib/actions/category.actions";
 
 export default function NavOptions(props: {
   position: string;
@@ -50,7 +50,7 @@ export default function NavOptions(props: {
           <HoldToDeleteComponent
             key={category._id.toString()}
             isActive={isActive}
-            text={category.text}
+            text={`${category.text} (${category.todoCount})`}
             icon={category.icon}
             holdText={`Deleting ${category.text}...`}
             onHoldStart={() => {

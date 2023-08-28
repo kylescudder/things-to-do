@@ -6,13 +6,15 @@ export interface ICategory {
 	text: string;
 	userId: mongoose.Types.ObjectId;
 	icon: string;
+	todoCount: number;
 }
 
 const categorySchema = new mongoose.Schema<ICategory>({
 	_id: { type: mongoose.Schema.Types.ObjectId },
 	text: { type: String },
 	userId: { type: mongoose.Schema.Types.ObjectId },
-	icon: { type: String }
+	icon: { type: String },
+	todoCount: { types: Number }
 })
 
 const Category = mongoose.models.Category || mongoose.model('Category', categorySchema)

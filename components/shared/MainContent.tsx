@@ -22,7 +22,17 @@ export const MainContent = (props: {
 		const newCatList = [...data];
     newCatList.sort((a, b) => a.text.localeCompare(b.text));
     setCategoryList(newCatList);
-	};
+  };
+  const pullToDo = (data: IToDo) => {
+    const updatedCategoryList = categoryList.map((category) => {
+      if (category._id === data.categoryId) {
+        category.todoCount++;
+      }
+      return category;
+    });
+
+    setCategoryList(updatedCategoryList);
+  }
   return (
     <CustomThemeProvider>
       <main className="flex flex-row">

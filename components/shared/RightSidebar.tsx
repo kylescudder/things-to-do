@@ -12,6 +12,7 @@ export default function RightSidebar(props: {
   icons: IIcon[];
   userId: mongoose.Types.ObjectId;
   func: (categories: ICategory[]) => void;
+  newToDo: (todo: IToDo) => void;
 }) {
   const [categoryList, setCategoryList] = useState<ICategory[]>(
     props.categories
@@ -26,6 +27,9 @@ export default function RightSidebar(props: {
     setCategoryList(newCatList);
     props.func(newCatList);
   };
+  const pullToDo = (data: IToDo) => {
+    props.newToDo(data);
+  };
   return (
     <section className="custom-scrollbar rightsidebar">
       <div className="flex flex-1 flex-col justify-start">
@@ -33,7 +37,7 @@ export default function RightSidebar(props: {
           Add To Do
         </h3>
         <div className="mt-7 flex w-[350px] flex-col gap-9">
-          <AddToDo categories={categoryList} />
+          <AddToDo func={pullToDo} categories={categoryList} />
         </div>
       </div>
 
