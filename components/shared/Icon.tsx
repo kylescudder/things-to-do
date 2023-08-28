@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { IconCategory } from '@tabler/icons-react';
 
 interface IconProps {
   name: string;
@@ -24,7 +25,17 @@ export default function Icon(props: IconProps) {
         console.error("Error loading icon:", error);
       });
   }, [props.name]);
-
+  if (!props.name) {
+    return (
+      <IconCategory
+        className={`text-dark-2 dark:text-light-1 ${
+          props.isActive && "bg-primary-500 text-light-1"
+        }`}
+        stroke={props.stroke}
+        strokeLinejoin={props.strokeLinejoin}
+      />
+    );
+  }
   if (!IconComponent) {
     return (
       <>
