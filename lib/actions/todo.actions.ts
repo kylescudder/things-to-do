@@ -1,10 +1,10 @@
 "use server"
 
 import { connectToDB } from "../mongoose";
-import ToDo, { IToDo } from "../models/todo";
 import mongoose from "mongoose";
 import dayjs from "dayjs";
 import utc from 'dayjs/plugin/utc'
+import ToDo, { IToDo } from "../models/todo";
 dayjs.extend(utc)
 
 export async function getToDos(id: string) {
@@ -36,7 +36,7 @@ export async function getToDos(id: string) {
   }
 }
 export const clickToDo = async (todoItem: IToDo) => {
-	try {
+  try {
     connectToDB();
     todoItem.completedDate = new Date
 		await ToDo.updateOne({
@@ -50,7 +50,7 @@ export const clickToDo = async (todoItem: IToDo) => {
 	}
 }
 export const addToDo = async (todoItem: IToDo) => {
-	try {
+  try {
 		connectToDB();
 		await ToDo.findOneAndUpdate({
 			_id: todoItem._id

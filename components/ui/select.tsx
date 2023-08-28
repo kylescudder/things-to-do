@@ -4,7 +4,10 @@ import IOption from "@/lib/models/options";
 import { ICategory } from "@/lib/models/category";
 import { useTheme } from "next-themes";
 
-export const SelectElem = (props: { options: IOption[]; func }) => {
+export const SelectElem = (props: {
+  options: IOption[];
+  func: (selectedOption: IOption) => void;
+}) => {
   const handleSelectChange = (selectedOption: ICategory) => {
     props.func(selectedOption);
   };

@@ -20,7 +20,7 @@ export default function RightSidebar(props: {
     setCategoryList(props.categories);
   }, [props.categories]);
 
-  const pull_data = (data: ICategory) => {
+  const pullData = (data: ICategory) => {
     const newCatList = [...categoryList, data];
     newCatList.sort((a, b) => a.text.localeCompare(b.text));
     setCategoryList(newCatList);
@@ -51,7 +51,7 @@ export default function RightSidebar(props: {
           <AddCategory
             icons={props.icons}
             userId={props.userId}
-            func={pull_data}
+            func={pullData}
           />
         </div>
       </div>

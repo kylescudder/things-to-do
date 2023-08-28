@@ -8,7 +8,7 @@ export default function LeftSidebar(props: {
   categories: ICategory[];
   func: (categories: ICategory[]) => void;
 }) {
-  const pull_data = (data: ICategory[]) => {
+  const pullData = (data: ICategory[]) => {
     props.func(data);
   };
 
@@ -23,7 +23,7 @@ export default function LeftSidebar(props: {
 			flex-col gap-3 px-6"
       >
         <NavOptions
-          func={pull_data}
+          func={pullData}
           position="leftsidebar"
           categories={props.categories}
         />

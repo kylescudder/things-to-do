@@ -16,9 +16,9 @@ export const MainContent = (props: {
   const [categoryList, setCategoryList] = useState<ICategory[]>(
     props.categories
   );
-	
-  const pull_data = async (data: ICategory[]) => {
-		const newCatList = [...data];
+  
+  const pullData = async (data: ICategory[]) => {
+    const newCatList = [...data];
     newCatList.sort((a, b) => a.text.localeCompare(b.text));
     setCategoryList(newCatList);
   };

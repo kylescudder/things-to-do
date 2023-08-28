@@ -52,8 +52,8 @@ const AddCategory = (props: {
     const newCat = await addCategory(payload);
     props.func(newCat);
   };
-  const pull_data = (data: IIcon) => {
-    setIcon(data.icon.toString());
+  const pullData = (data: IIcon) => {
+    setIcon(data.icon?.toString());
   };
   return (
     <Form {...form}>
@@ -72,7 +72,7 @@ const AddCategory = (props: {
               <FormControl>
                 <Input
                   type="text"
-                  className="account-form_input no-focus bg-light-2 dark:bg-dark-2"
+                  className="account-form_input no-focus dark:bg-dark-2"
                   placeholder="What is the new category?"
                   {...field}
                 />
@@ -89,7 +89,7 @@ const AddCategory = (props: {
                 Icon
               </FormLabel>
               <FormControl>
-                <SelectElem func={pull_data} options={options} />
+                <SelectElem func={pullData} options={options} />
               </FormControl>
             </FormItem>
           )}

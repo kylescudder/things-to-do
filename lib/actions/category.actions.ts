@@ -56,13 +56,17 @@ export async function addCategory(categoryData: ICategory) {
   try {
     connectToDB();
 
-    return await Category.findOneAndUpdate({
-      _id: new mongoose.Types.ObjectId(categoryData._id)
-    }, {
-      text: categoryData.text,
-      userId: new mongoose.Types.ObjectId(categoryData.userId),
-      icon: categoryData.icon
-    }, { upsert: true, new: true })
+    return await Category.findOneAndUpdate(
+      {
+        _id: new mongoose.Types.ObjectId(categoryData._id),
+      },
+      {
+        text: categoryData.text,
+        userId: new mongoose.Types.ObjectId(categoryData.userId),
+        icon: categoryData.icon,
+      },
+      { upsert: true, new: true }
+    );
   } catch (error: any) {
     throw new Error(`Failed to add categories: ${error.message}`);
   }
@@ -72,8 +76,8 @@ export async function deleteCategory(categoryData: ICategory) {
     connectToDB();
 
     return await Category.deleteOne({
-      _id: new mongoose.Types.ObjectId(categoryData._id)
-    })
+      _id: new mongoose.Types.ObjectId(categoryData._id),
+    });
   } catch (error: any) {
     throw new Error(`Failed to add categories: ${error.message}`);
   }

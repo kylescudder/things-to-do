@@ -20,9 +20,6 @@ export default function NavOptions(props: {
   const pathname = usePathname();
   const router = useRouter();
 
-  useEffect(() => {
-  }, [categoryList]);
-  
   return (
     <div className="contents w-full">
       <Link
@@ -61,7 +58,6 @@ export default function NavOptions(props: {
               deleteToast(category);
               deleteCategory(category)
               props.func(updatedArray);
-              //TODO Delete from DB
             }}
             onHoldEnd={() => {
               router.push(`/list/${category._id}`);

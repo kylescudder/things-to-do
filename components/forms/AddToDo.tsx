@@ -38,14 +38,14 @@ const AddToDo = (props: { categories: ICategory[] }) => {
       completed: false,
     },
   });
-  interface formUser {
+  interface FormUser {
     text: string;
     targetDate: Date;
     categoryId: string;
     completed: boolean;
   }
-  const onSubmit = async (values: formUser) => {
     const payload: IToDo = {
+  const onSubmit = async (values: FormUser) => {
       text: values.text,
       targetDate: startDate,
       categoryId: categoryId,
@@ -56,7 +56,7 @@ const AddToDo = (props: { categories: ICategory[] }) => {
     router.refresh();
   };
 
-  const pull_data = (data: ICategory) => {
+  const pullData = (data: ICategory) => {
     setCategoryId(data._id.toString());
   };
   return (
@@ -69,7 +69,7 @@ const AddToDo = (props: { categories: ICategory[] }) => {
           control={form.control}
           name="text"
           render={({ field }) => (
-            <FormItem className="flex flex-col gap-3 w=full">
+            <FormItem className="flex flex-col gap-3 w-full">
               <FormLabel className="text-base-semibold text-dark-2 dark:text-light-2">
                 What to do...
               </FormLabel>
@@ -116,7 +116,7 @@ const AddToDo = (props: { categories: ICategory[] }) => {
                 Bio
               </FormLabel>
               <FormControl>
-                <SelectElem func={pull_data} options={options} />
+                <SelectElem func={pullData} options={options} />
               </FormControl>
             </FormItem>
           )}

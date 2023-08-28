@@ -4,9 +4,7 @@ import { Inter } from "next/font/google";
 import { ClerkProvider, currentUser } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import "../globals.css";
-import RightSidebar from "@/components/shared/RightSidebar";
 import Topbar from "@/components/shared/Topbar";
-import LeftSidebar from "@/components/shared/LeftSidebar";
 import Bottombar from "@/components/shared/Bottombar";
 import { getUserInfo } from "@/lib/actions/user.actions";
 import { redirect } from "next/navigation";
@@ -29,6 +27,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
   }) {
+
   const user = await currentUser();
   if (!user) return null;
 
@@ -37,7 +36,7 @@ export default async function RootLayout({
 
   const categories: ICategory[] = await getCategories(userInfo._id);
   const icons: IIcon[] = await getIcons();
-  
+
   return (
     <ClerkProvider
       appearance={{
