@@ -39,16 +39,13 @@ export async function getCategoryCount(id: string) {
   try {
     connectToDB();
     const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000); // Calculate the date 1 hour ago
-    console.log(new mongoose.Types.ObjectId(id));
-    const todolist = await ToDo.find({
+    return await ToDo.find({
       categoryId: new mongoose.Types.ObjectId(id),
       $or: [
         { completed: true, completedDate: { $gte: oneHourAgo } },
         { completed: false },
       ],
     }).count();
-    console.log(todolist);
-    return todolist
   } catch (error: any) {
     throw new Error(`Failed to get category count: ${error.message}`);
   }
