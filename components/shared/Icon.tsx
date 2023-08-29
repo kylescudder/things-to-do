@@ -32,7 +32,7 @@ export default function Icon(props: IconProps) {
           props.isActive && "bg-primary-500 text-light-1"
         }`}
         stroke={props.stroke}
-        strokeLinejoin={props.strokeLinejoin}
+        strokeLinejoin="miter"
       />
     );
   }
