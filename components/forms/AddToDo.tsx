@@ -59,6 +59,7 @@ const AddToDo = (props: {
       completed: values.completed,
       completedDate: new Date()
     };
+
     const newToDo: IToDo = await addToDo(payload);
     props.func(newToDo);
     router.refresh();
