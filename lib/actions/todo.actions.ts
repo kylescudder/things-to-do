@@ -59,7 +59,7 @@ export const addToDo = async (todoItem: IToDo) => {
       targetDate: `${todoItem.targetDate?.toISOString().substring(0, todoItem.targetDate.toISOString().length - 1)}+00:00`,
       categoryId: new ObjectId(todoItem.categoryId),
 			completed: false,
-    }, { upsert: true, new: true }).lean()
+    }, { upsert: true, new: true })
 	} catch (error: any) {
 		throw new Error(`Failed to get todos: ${error.message}`);
 	}
