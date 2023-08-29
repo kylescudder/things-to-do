@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-import { Label } from "@radix-ui/react-label";
+import { Label } from "@/components/ui/label";
 
 export const DarkModeToggle = () => {
   const [mounted, setMounted] = useState(false);
