@@ -1,18 +1,18 @@
-"use server"
+"use server";
 import { connectToDB } from "../mongoose";
 import Category, { ICategory } from "../models/category";
-import { ObjectId } from 'bson'
 import ToDo from "../models/todo";
+import { ObjectId } from "bson";
+import mongoose from "mongoose";
 
-export async function getCategories(id: ObjectId) {
+export async function getCategories(id: string) {
   try {
     connectToDB();
     const categories: ICategory[] = await Category.find({
-      userId: id,
+      userId: new mongoose.Types.ObjectId(id),
     })
       .collation({ locale: "en", strength: 1 }) // Case-insensitive collation
       .sort({ text: 1 });
-
     const newCatList: ICategory[] = [];
 
     for (const category of categories) {
@@ -30,24 +30,25 @@ export async function getCategories(id: ObjectId) {
       }
     }
 
-    console.log(newCatList);
     return newCatList;
   } catch (error: any) {
     throw new Error(`Failed to get categories: ${error.message}`);
   }
 }
-export async function getCategoryCount(id: ObjectId) {
+export async function getCategoryCount(id: string) {
   try {
     connectToDB();
     const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000); // Calculate the date 1 hour ago
-
-    return await ToDo.find({
-      categoryId: id,
+    console.log(new mongoose.Types.ObjectId(id));
+    const todolist = await ToDo.find({
+      categoryId: new mongoose.Types.ObjectId(id),
       $or: [
         { completed: true, completedDate: { $gte: oneHourAgo } },
         { completed: false },
       ],
     }).count();
+    console.log(todolist);
+    return todolist
   } catch (error: any) {
     throw new Error(`Failed to get category count: ${error.message}`);
   }

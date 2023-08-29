@@ -1,10 +1,10 @@
 "use server"
 
 import { connectToDB } from "../mongoose";
-import { ObjectId } from 'bson'
 import dayjs from "dayjs";
 import utc from 'dayjs/plugin/utc'
 import ToDo, { IToDo } from "../models/todo";
+import mongoose from "mongoose";
 dayjs.extend(utc)
 
 export async function getToDos(id: string) {
@@ -13,7 +13,7 @@ export async function getToDos(id: string) {
 
     const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000); // Calculate the date 1 hour ago
     const todos: IToDo[] = await ToDo.find({
-      categoryId: new ObjectId(id),
+      categoryId: new mongoose.Types.ObjectId(id),
       $or: [
         { completed: true, completedDate: { $gte: oneHourAgo } },
         { completed: false }
@@ -52,14 +52,20 @@ export const clickToDo = async (todoItem: IToDo) => {
 export const addToDo = async (todoItem: IToDo) => {
   try {
 		connectToDB();
-		return await ToDo.findOneAndUpdate({
-			_id: new ObjectId()
-    }, {
-      text: todoItem.text,
-      targetDate: `${todoItem.targetDate?.toISOString().substring(0, todoItem.targetDate.toISOString().length - 1)}+00:00`,
-      categoryId: new ObjectId(todoItem.categoryId),
-			completed: false,
-    }, { upsert: true, new: true })
+		return await ToDo.findOneAndUpdate(
+      {
+        _id: new mongoose.Types.ObjectId(),
+      },
+      {
+        text: todoItem.text,
+        targetDate: `${todoItem.targetDate
+          ?.toISOString()
+          .substring(0, todoItem.targetDate.toISOString().length - 1)}+00:00`,
+        categoryId: new mongoose.Types.ObjectId(todoItem.categoryId),
+        completed: false,
+      },
+      { upsert: true, new: true }
+    );
 	} catch (error: any) {
 		throw new Error(`Failed to get todos: ${error.message}`);
 	}

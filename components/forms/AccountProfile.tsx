@@ -16,7 +16,6 @@ import { ChangeEvent } from "react";
 import Image from "next/image";
 import { IUser } from "@/lib/models/user";
 import { updateUser } from "@/lib/actions/user.actions";
-import { ObjectId } from "bson";
 
 interface Props {
   user: IUser;
@@ -42,7 +41,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
   }
   const onSubmit = async (values: formUser) => {
     const payload: IUser = {
-      _id: new ObjectId,
+      _id: "",
       username: values.username,
       name: values.name,
       bio: values.bio,

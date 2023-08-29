@@ -2,16 +2,15 @@
 
 import { ICategory } from "@/lib/models/category";
 import { IIcon } from "@/lib/models/icon";
-import AddToDo from "../forms/AddToDo";
-import AddCategory from "../forms/AddCategory";
+import AddToDo from "@/components/forms/AddToDo";
+import AddCategory from "@/components/forms/AddCategory";
 import { useEffect, useState } from "react";
 import { IToDo } from "@/lib/models/todo";
-import { ObjectId } from "bson";
 
 export default function RightSidebar(props: {
   categories: ICategory[];
   icons: IIcon[];
-  userId: ObjectId;
+  userId: string;
   func: (categories: ICategory[]) => void;
   newToDo: (todo: IToDo) => void;
 }) {

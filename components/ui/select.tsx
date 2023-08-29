@@ -3,7 +3,6 @@ import Icon from "../shared/Icon";
 import IOption from "@/lib/models/options";
 import { ICategory } from "@/lib/models/category";
 import { useTheme } from "next-themes";
-import { ObjectId } from "bson";
 
 export const SelectElem = (props: {
   options: IOption[];
@@ -15,11 +14,11 @@ export const SelectElem = (props: {
     ) => {
       if (selectedOption != null) {
         const newCat: ICategory = {
-          _id: new ObjectId(selectedOption._id),
+          _id: selectedOption._id,
           text: selectedOption.text,
           icon: selectedOption.icon,
           todoCount: 0,
-          userId: new ObjectId
+          userId: ""
         }
         props.func(newCat);
       }

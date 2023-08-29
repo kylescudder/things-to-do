@@ -1,15 +1,14 @@
 import mongoose from 'mongoose'
-import { ObjectId } from 'bson'
 
 // 1. Create an interface representing a document in MongoDB.
 export interface IIcon {
-  _id: ObjectId;
+  _id: string;
 	icon: string;
 	text: string;
 }
 
 const iconSchema = new mongoose.Schema<IIcon>({
-	_id: { type: mongoose.Schema.Types.ObjectId },
+	_id: { type: String },
 	icon: { type: String },
 	text: { type: String }
 })

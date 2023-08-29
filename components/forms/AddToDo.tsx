@@ -18,7 +18,6 @@ import SelectElem from "../ui/select";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { addToDo } from "@/lib/actions/todo.actions";
-import { ObjectId } from "bson";
 import dayjs from "dayjs";
 
 const AddToDo = (props: {
@@ -27,7 +26,7 @@ const AddToDo = (props: {
 }) => {
   const router = useRouter();
   const [targetDate, setTargetDate] = useState(new Date());
-  const [categoryId, setCategoryId] = useState(new ObjectId);
+  const [categoryId, setCategoryId] = useState("");
 
   const options = props.categories.map((element) => ({
     _id: element._id,
@@ -39,19 +38,19 @@ const AddToDo = (props: {
     defaultValues: {
       text: "",
       targetDate: new Date(),
-      categoryId: new ObjectId,
+      categoryId: "",
       completed: false,
     },
   });
   interface FormUser {
     text: string;
     targetDate: Date;
-    categoryId: ObjectId;
+    categoryId: "";
     completed: boolean;
   }
   const onSubmit = async (values: FormUser) => {
     const payload: IToDo = {
-      _id: new ObjectId(),
+      _id: "",
       text: values.text,
       targetDate: targetDate,
       targetDateString: dayjs(targetDate).format('DD/MM/YYYY HH:mm'),

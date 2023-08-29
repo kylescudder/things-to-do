@@ -16,12 +16,11 @@ import { ICategory } from "@/lib/models/category";
 import SelectElem from "../ui/select";
 import IOption from "@/lib/models/options";
 import { useState } from "react";
-import { ObjectId } from "bson";
 
 const AddCategory = (props: {
   icons: IIcon[];
   func: (categories: ICategory) => void;
-  userId: ObjectId;
+  userId: string;
 }) => {
   const [icon, setIcon] = useState("");
   const options: IOption[] = [];
@@ -45,7 +44,7 @@ const AddCategory = (props: {
   }
   const onSubmit = async (values: formUser) => {
     const payload: ICategory = {
-      _id: new ObjectId(),
+      _id: "",
       text: values.text,
       icon: icon,
       userId: props.userId,

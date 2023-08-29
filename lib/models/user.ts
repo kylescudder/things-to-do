@@ -1,9 +1,8 @@
 import mongoose from 'mongoose'
-import { ObjectId } from 'bson'
 
 // 1. Create an interface representing a document in MongoDB.
 export interface IUser {
-  _id: ObjectId;
+  _id: string;
 	clerkId: string;
   username: string;
   name: string;
@@ -13,7 +12,7 @@ export interface IUser {
 }
 
 const userSchema = new mongoose.Schema<IUser>({
-	_id: { type: mongoose.Schema.Types.ObjectId },
+	_id: { type: String },
 	clerkId: { type: String },
 	username: { type: String, required: true, unique: true, min: [3, 'Please enter a longer name'], max: [3, 'Please enter a shorter name'] },
 	name: { type: String, min: [3, 'Please enter a longer name'], max: [3, 'Please enter a shorter name'] },
