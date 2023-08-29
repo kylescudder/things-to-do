@@ -9,7 +9,7 @@ export default async function Bottombar(props: { categories: ICategory[] }) {
     <CustomThemeProvider>
       <section className="bottombar">
         <div className="bottombar_container">
-          <NavOptions position="bottombar" categories={props.categories} />
+          {/*<NavOptions position="bottombar" categories={props.categories} />*/}
         </div>
       </section>
     </CustomThemeProvider>
