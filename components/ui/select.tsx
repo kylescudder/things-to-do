@@ -56,7 +56,7 @@ export const SelectElem = (props: {
 
   const CustomOption = (props: OptionProps<IOption>) => (
     <div
-      className={`text-dark-2 dark:text-white py-2 ${
+      className={`text-dark-2 dark:text-white py-2 cursor-pointer ${
         darkMode ? "border-gray-600" : "border-gray-300"
       }`}
       style={{ display: "flex", alignItems: "center" }}
