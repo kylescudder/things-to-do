@@ -1,8 +1,9 @@
 import mongoose from 'mongoose'
+import { ObjectId } from 'bson'
 
 // 1. Create an interface representing a document in MongoDB.
 export interface IUser {
-  _id: mongoose.Types.ObjectId;
+  _id: ObjectId;
 	clerkId: string;
   username: string;
   name: string;

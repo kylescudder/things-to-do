@@ -18,6 +18,7 @@ import SelectElem from "../ui/select";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { addToDo } from "@/lib/actions/todo.actions";
+import { ObjectId } from "bson";
 
 const AddToDo = (props: {
   categories: ICategory[];
@@ -44,7 +45,7 @@ const AddToDo = (props: {
   interface FormUser {
     text: string;
     targetDate: Date;
-    categoryId: string;
+    categoryId: ObjectId;
     completed: boolean;
   }
   const onSubmit = async (values: FormUser) => {

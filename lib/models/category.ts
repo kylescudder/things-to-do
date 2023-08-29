@@ -1,10 +1,11 @@
 import mongoose from 'mongoose'
+import { ObjectId } from 'bson'
 
 // 1. Create an interface representing a document in MongoDB.
 export interface ICategory {
-  _id: mongoose.Types.ObjectId;
+  _id: ObjectId;
 	text: string;
-	userId: mongoose.Types.ObjectId;
+	userId: ObjectId;
 	icon: string;
 	todoCount: number;
 }

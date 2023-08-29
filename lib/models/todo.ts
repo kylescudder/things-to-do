@@ -1,14 +1,15 @@
 import mongoose from 'mongoose'
+import { ObjectId } from 'bson'
 
 // 1. Create an interface representing a document in MongoDB.
 export interface IToDo {
-  _id: mongoose.Types.ObjectId;
+  _id: ObjectId;
 	text: string;
 	targetDate: Date;
 	targetDateString: string;
 	completed: boolean;
 	completedDate: Date;
-	categoryId: mongoose.Types.ObjectId;
+	categoryId: ObjectId;
 }
 
 const todoSchema = new mongoose.Schema<IToDo>({
