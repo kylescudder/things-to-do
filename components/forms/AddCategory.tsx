@@ -49,6 +49,7 @@ const AddCategory = (props: {
       text: values.text,
       icon: icon,
       userId: props.userId,
+      todoCount: 0
     };
     const newCat = await addCategory(payload);
     props.func(newCat);
