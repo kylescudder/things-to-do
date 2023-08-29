@@ -1,16 +1,29 @@
-import Select from "react-select";
+import Select, { ActionMeta, SingleValue } from "react-select";
 import Icon from "../shared/Icon";
 import IOption from "@/lib/models/options";
 import { ICategory } from "@/lib/models/category";
 import { useTheme } from "next-themes";
+import { ObjectId } from "bson";
 
 export const SelectElem = (props: {
   options: IOption[];
   func: (selectedOption: ICategory) => void;
 }) => {
-  const handleSelectChange = (selectedOption: ICategory) => {
-    props.func(selectedOption);
-  };
+    const handleSelectChange = (
+      selectedOption: SingleValue<IOption>,
+      _actionMeta: ActionMeta<IOption>
+    ) => {
+      if (selectedOption != null) {
+        const newCat: ICategory = {
+          _id: new ObjectId(selectedOption._id),
+          text: selectedOption.text,
+          icon: selectedOption.icon,
+          todoCount: 0,
+          userId: new ObjectId
+        }
+        props.func(newCat);
+      }
+    };
   const { theme, setTheme } = useTheme();
   const darkMode = theme === "light" ? false : true;
   return (
@@ -22,7 +35,7 @@ export const SelectElem = (props: {
       classNamePrefix="react-select"
       theme={(theme) => ({
         ...theme,
-        borderRadius: "0.375rem",
+        borderRadius: 6,
         colors: {
           ...theme.colors,
           primary25: darkMode ? "#505966" : "border-gray-300",
@@ -32,11 +45,16 @@ export const SelectElem = (props: {
       })}
       placeholder="Select Option"
       options={props.options}
-      getOptionLabel={(e) => (
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <Icon name={e.icon} stroke="1" strokeLinejoin="miter" isActive={false} />
-          <span style={{ marginLeft: 5 }}>{e.text}</span>
-        </div>
+      getOptionLabel={(option: IOption) => (
+        `<div style={{ display: "flex", alignItems: "center" }}>
+          ${<Icon
+            name={option.icon}
+            stroke="1"
+            strokeLinejoin="miter"
+            isActive={false}
+          />}
+          <span style={{ marginLeft: 5 }}>${option.text}</span>
+        </div>`
       )}
       onChange={handleSelectChange}
     />
