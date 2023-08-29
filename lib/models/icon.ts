@@ -6,9 +6,13 @@ export interface IIcon {
 	icon: string;
 	text: string;
 }
-
-const iconSchema = new mongoose.Schema<IIcon>({
-	_id: { type: String },
+interface IconClass {
+  _id: mongoose.Types.ObjectId;
+  icon: string;
+  text: string;
+}
+const iconSchema = new mongoose.Schema<IconClass>({
+	_id: { type: mongoose.Schema.Types.ObjectId },
 	icon: { type: String },
 	text: { type: String }
 })

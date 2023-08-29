@@ -10,15 +10,23 @@ export interface IToDo {
 	completedDate: Date;
 	categoryId: string;
 }
-
-const todoSchema = new mongoose.Schema<IToDo>({
-  _id: { type: String },
+interface ToDoClass {
+  _id: mongoose.Types.ObjectId;
+  text: string;
+  targetDate: Date;
+  targetDateString: string;
+  completed: boolean;
+  completedDate: Date;
+  categoryId: mongoose.Types.ObjectId;
+}
+const todoSchema = new mongoose.Schema<ToDoClass>({
+  _id: { type: mongoose.Schema.Types.ObjectId },
   text: { type: String },
   targetDate: { type: Date },
   targetDateString: { type: String },
   completed: { type: Boolean },
   completedDate: { type: Date },
-  categoryId: { type: mongoose.Types.ObjectId },
+  categoryId: { type: mongoose.Schema.Types.ObjectId },
 });
 
 const ToDo = mongoose.models.ToDo || mongoose.model('ToDo', todoSchema)
