@@ -45,7 +45,7 @@ const AddToDo = (props: {
   interface FormUser {
     text: string;
     targetDate: Date;
-    categoryId: "";
+    categoryId: string;
     completed: boolean;
   }
   const onSubmit = async (values: FormUser) => {
@@ -53,10 +53,10 @@ const AddToDo = (props: {
       _id: "",
       text: values.text,
       targetDate: targetDate,
-      targetDateString: dayjs(targetDate).format('DD/MM/YYYY HH:mm'),
+      targetDateString: dayjs(targetDate).format("DD/MM/YYYY HH:mm"),
       categoryId: categoryId,
       completed: values.completed,
-      completedDate: new Date()
+      completedDate: new Date(),
     };
 
     const newToDo: IToDo = await addToDo(payload);
