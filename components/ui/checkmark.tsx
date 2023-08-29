@@ -7,6 +7,7 @@ export const CheckMark = (props: { completed: boolean }) => {
         name={"IconCircleCheckFilled"}
         stroke="1"
         strokeLinejoin="miter"
+        isActive={false}
       />
     );
   } else {
@@ -15,6 +16,7 @@ export const CheckMark = (props: { completed: boolean }) => {
         name={"IconCircleCheck"}
         stroke="1"
         strokeLinejoin="miter"
+        isActive={false}
       />
     );
   }
