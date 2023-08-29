@@ -19,14 +19,15 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { addToDo } from "@/lib/actions/todo.actions";
 import { ObjectId } from "bson";
+import dayjs from "dayjs";
 
 const AddToDo = (props: {
   categories: ICategory[];
   func: (todo: IToDo) => void;
 }) => {
   const router = useRouter();
-  const [startDate, setStartDate] = useState(new Date());
-  const [categoryId, setCategoryId] = useState("");
+  const [targetDate, setTargetDate] = useState(new Date());
+  const [categoryId, setCategoryId] = useState(new ObjectId);
 
   const options = props.categories.map((element) => ({
     _id: element._id,
@@ -38,7 +39,7 @@ const AddToDo = (props: {
     defaultValues: {
       text: "",
       targetDate: new Date(),
-      categoryId: "",
+      categoryId: new ObjectId,
       completed: false,
     },
   });
@@ -50,10 +51,13 @@ const AddToDo = (props: {
   }
   const onSubmit = async (values: FormUser) => {
     const payload: IToDo = {
+      _id: new ObjectId(),
       text: values.text,
-      targetDate: startDate,
+      targetDate: targetDate,
+      targetDateString: dayjs(targetDate).format('DD/MM/YYYY HH:mm'),
       categoryId: categoryId,
       completed: values.completed,
+      completedDate: new Date()
     };
     const newToDo: IToDo = await addToDo(payload);
     props.func(newToDo);
@@ -61,7 +65,7 @@ const AddToDo = (props: {
   };
 
   const pullData = (data: ICategory) => {
-    setCategoryId(data._id.toString());
+    setCategoryId(data._id);
   };
   return (
     <Form {...form}>
@@ -103,9 +107,9 @@ const AddToDo = (props: {
                 <DatePicker
                   required={true}
                   dateFormat="dd/MM/yyyy"
-                  selected={startDate}
+                  selected={targetDate}
                   highlightDates={[new Date()]}
-                  onChange={(date) => setStartDate(date!)}
+                  onChange={(date) => setTargetDate(date!)}
                 />
               </FormControl>
             </FormItem>

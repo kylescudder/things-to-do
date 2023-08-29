@@ -6,7 +6,7 @@ import { useTheme } from "next-themes";
 
 export const SelectElem = (props: {
   options: IOption[];
-  func: (selectedOption: IOption) => void;
+  func: (selectedOption: ICategory) => void;
 }) => {
   const handleSelectChange = (selectedOption: ICategory) => {
     props.func(selectedOption);
