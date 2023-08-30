@@ -15,30 +15,35 @@ export default function ToDo(todoItem: IToDo) {
     successToast(updatedToDo);
     setData(updatedToDo);
   };
+
   return (
     <div
       className={`dark:bg-dark-4 h-full cursor-pointer rounded-2xl shadow-xl ${
         todoItem.completed ? "dark:shadow-slate-300/60 shadow-blue-300/60" : ""
-      } todoItem my-8 flex items-center justify-between`}
+      } todoItem my-8 flex items-center justify-between w-full`}
       onClick={handleTodoClick}
       data-id={todoItem._id}
       data-categoryid={todoItem.categoryId}
     >
-      <div className={`flex ${data?.completed ? "completed" : ""}`}>
-        <div className="p-4">
+      <div className={`flex ${data?.completed ? "completed" : ""} w-full`}>
+        <div className="p-4 w-full">
           <span className="md:text-2xl text-sm font-medium text-dark-2 dark:text-white inline-block align-middle">
             {todoItem.text}
           </span>
         </div>
         {todoItem.targetDateString && (
-          <div className="p-4 flex flex-col">
+          <div className="p-4 flex flex-col w-2/5 text-right">
+            {" "}
+            {/* Adjusted width and alignment */}
             <h1 className="md:text-2xl text-sm font-medium text-dark-2 dark:text-white">
               {todoItem.targetDateString}
             </h1>
           </div>
         )}
-        <div className="p-4 flex flex-col">
-          <div className="text-dark-2 dark:text-white md:w-20 w-8">
+        <div className="p-4 flex flex-col w-1/12 text-right">
+          {" "}
+          {/* Adjusted width and alignment */}
+          <div className="text-dark-2 dark:text-white">
             <CheckMark completed={data?.completed || false} />
           </div>
         </div>

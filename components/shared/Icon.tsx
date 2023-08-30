@@ -39,7 +39,12 @@ export default function Icon(props: IconProps) {
   if (!IconComponent) {
     return (
       <>
-        <div className="animated">
+        <div
+          className={`animated ${
+            props.name === "IconCircleCheckFilled" ||
+            (props.name === "IconCircleCheck" && "float-right")
+          }`}
+        >
           <div className="avatar">
             <div className="avatar-image"></div>
           </div>
@@ -52,6 +57,9 @@ export default function Icon(props: IconProps) {
     <IconComponent
       className={`text-dark-2 dark:text-light-1 ${
         props.isActive && "bg-primary-500 text-light-1"
+      } ${
+        props.name === "IconCircleCheckFilled" ||
+        (props.name === "IconCircleCheck" && "float-right")
       }`}
       {...(props.stroke && { stroke: props.stroke })}
       {...(props.strokeLinejoin && { strokeLinejoin: props.strokeLinejoin })}
