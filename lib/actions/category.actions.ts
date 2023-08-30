@@ -56,11 +56,11 @@ export async function addCategory(categoryData: ICategory) {
 
     return await Category.findOneAndUpdate(
       {
-        _id: new ObjectId(categoryData._id),
+        _id: new ObjectId(),
       },
       {
         text: categoryData.text,
-        userId: new ObjectId(categoryData.userId),
+        userId: new mongoose.Types.ObjectId(categoryData.userId),
         icon: categoryData.icon,
       },
       { upsert: true, new: true }
