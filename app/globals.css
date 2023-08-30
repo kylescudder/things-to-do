@@ -123,8 +123,8 @@
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
   background-color: rgba(255, 255, 255, 1);
-  max-width: 85%;
-  left: 0.75rem;
+  max-width: 96%;
+  left: 2%;
 }
 /* Apply this class to the react-datepicker wrapper */
 .react-datepicker {
