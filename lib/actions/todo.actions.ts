@@ -19,6 +19,7 @@ export async function getToDos(id: string) {
         { completed: false }
       ]
     }).sort({
+      completed: 1,
       targetDate: 1
     }).lean()
     
