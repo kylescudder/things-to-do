@@ -18,8 +18,10 @@ export async function getToDos(id: string) {
         { completed: true, completedDate: { $gte: oneHourAgo } },
         { completed: false }
       ]
+    }).sort({
+      targetDate: 1
     }).lean()
-
+    
     if (todos !== undefined) {
       todos.forEach((todo) => {
         if (todo.targetDate) {
