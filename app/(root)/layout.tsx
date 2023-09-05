@@ -5,7 +5,6 @@ import { ClerkProvider, currentUser } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import "../globals.css";
 import Topbar from "@/components/shared/Topbar";
-import Bottombar from "@/components/shared/Bottombar";
 import { getUserInfo } from "@/lib/actions/user.actions";
 import { redirect } from "next/navigation";
 import { IUser } from "@/lib/models/user";
@@ -26,8 +25,7 @@ export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
-  }) {
-
+}) {
   const user = await currentUser();
   if (!user) return null;
 
@@ -36,7 +34,7 @@ export default async function RootLayout({
 
   const categories: ICategory[] = await getCategories(userInfo._id);
   const icons: IIcon[] = await getIcons();
-
+  const pullData = () => {};
   return (
     <ClerkProvider
       appearance={{
@@ -45,15 +43,13 @@ export default async function RootLayout({
     >
       <html lang="en">
         <body className={inter.className}>
-          <Topbar />
-            <MainContent
-              categories={categories}
-              icons={icons}
-              userId={userInfo._id}
-              children={children}
-            />
-          <Bottombar categories={categories} />
-          <Toast />
+          <Topbar icons={icons} userId={userInfo._id} categories={categories} />
+          <MainContent
+            categories={categories}
+            icons={icons}
+            userId={userInfo._id}
+            children={children}
+          />          <Toast />
         </body>
       </html>
     </ClerkProvider>

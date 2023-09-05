@@ -3,11 +3,17 @@
 import NavOptions from "./NavOptions";
 import Logout from "./Logout";
 import { ICategory } from "@/lib/models/category";
+import { useEffect, useState } from "react";
 
 export default function LeftSidebar(props: {
   categories: ICategory[];
   func: (categories: ICategory[]) => void;
 }) {
+  const [categoryList, setCategoryList] = useState<ICategory[]>(props.categories)
+  useEffect(() => {
+    setCategoryList(props.categories);
+  }, [props.categories]);
+  
   const pullData = (data: ICategory[]) => {
     props.func(data);
   };
@@ -23,7 +29,7 @@ export default function LeftSidebar(props: {
         <NavOptions
           func={pullData}
           position="leftsidebar"
-          categories={props.categories}
+          categories={categoryList}
         />
       </div>
       <div className="mt-auto px-6 py-3 shadow-inner">

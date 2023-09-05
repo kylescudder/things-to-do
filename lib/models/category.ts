@@ -9,14 +9,14 @@ export interface ICategory {
 	todoCount: number;
 }
 interface CategoryClass {
-  _id: string;
+  _id: mongoose.Types.ObjectId;
   text: string;
   userId: mongoose.Types.ObjectId;
   icon: string;
   todoCount: number;
 }
 const categorySchema = new mongoose.Schema<CategoryClass>({
-  _id: { type: String },
+  _id: { type: mongoose.Schema.Types.ObjectId },
   text: { type: String },
   userId: { type: mongoose.Schema.Types.ObjectId },
   icon: { type: String },
