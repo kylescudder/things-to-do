@@ -55,9 +55,6 @@ export default function RightSidebar(props: {
         <h3 className="text-heading4-medium text-dark-2 dark:text-light-1">
           Add Category
         </h3>
-        <h5 className="text-dark-2 dark:text-light-1">
-          Can't find the right category? That's cool, just create it!
-        </h5>
         <div className="mt-7 flex w-[350px] flex-col gap-10">
           <AddCategory
             icons={props.icons}
