@@ -33,16 +33,19 @@ class HoldToDeleteComponent extends Component<Props, State> {
     this.holdStartTime = Date.now();
     setTimeout(() => {
       this.timer = setInterval(() => {
-        const { timerProgress } = this.state;
-        if (!this.props.isActive) {
+        const { timerProgress, held, holding } = this.state;
+        if (!this.props.isActive && held) {
           if (timerProgress < 100) {
             this.setState({ timerProgress: timerProgress + 1 });
-          } else {
+          } else if (timerProgress >= 100 && held) {
             this.handleHoldEnd();
             this.setState({ held: false });
             setTimeout(() => {
               this.props.onHoldStart();
             }, 200);
+          } else {
+            this.handleHoldEnd();
+            this.setState({ held: false });
           }
         }
       }, 20);
