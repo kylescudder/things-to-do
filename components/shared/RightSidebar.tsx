@@ -37,8 +37,10 @@ export default function RightSidebar(props: {
     <section
       className={`custom-scrollbar 
       sticky right-0 top-0 z-20 h-screen w-fit justify-between
-      overflow-auto border-l border-l-dark-4 bg-light-2
-    dark:bg-dark-2 flex flex-col pb-0 ${open ? "" : "pt-28 max-md:hidden"}`}
+      overflow-auto bg-light-2
+    dark:bg-dark-2 flex flex-col pb-0 ${
+      open ? "" : "px-6 border-l border-l-dark-4 pt-28 max-md:hidden"
+    }`}
     >
       <div className="flex flex-1 flex-col justify-start">
         <h3 className="text-heading4-medium text-dark-2 dark:text-light-1">
