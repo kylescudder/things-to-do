@@ -12,6 +12,7 @@
   "dependencies": {
     "@clerk/nextjs": "^4.23.2",
     "@clerk/themes": "^1.7.5",
+    "@ducanh2912/next-pwa": "^9.5.0",
     "@hookform/resolvers": "^3.3.0",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
@@ -44,6 +45,7 @@
   },
   "devDependencies": {
     "@types/react-burger-menu": "^2.8.3",
-    "@types/react-datepicker": "^4.15.0"
+    "@types/react-datepicker": "^4.15.0",
+    "webpack": "^5.88.2"
   }
 }

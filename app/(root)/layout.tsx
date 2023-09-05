@@ -19,6 +19,34 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Things To Do",
   description: "All your To Dos, organised, simplified, accessible...",
+  applicationName: "Things To Do",
+  manifest: "/manifest.json",
+  themeColor: "#877EFF",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Things To Do",
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    siteName: "Things To Do",
+    title: {
+      default: "Things To Do",
+      template: "% - PWA App",
+    },
+    description: "All your To Dos, organised, simplified, accessible...",
+  },
+  twitter: {
+    card: "summary",
+    title: {
+      default: "Things To Do",
+      template: "% - PWA App",
+    },
+    description: "All your To Dos, organised, simplified, accessible...",
+  },
 };
 
 export default async function RootLayout({
