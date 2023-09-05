@@ -2,7 +2,6 @@
 import { connectToDB } from "../mongoose";
 import Category, { ICategory } from "../models/category";
 import ToDo from "../models/todo";
-import { ObjectId } from "bson";
 import mongoose from "mongoose";
 
 export async function getCategories(id: string) {
@@ -56,11 +55,11 @@ export async function addCategory(categoryData: ICategory) {
 
     return await Category.findOneAndUpdate(
       {
-        _id: new ObjectId(categoryData._id),
+        _id: new mongoose.Types.ObjectId(),
       },
       {
         text: categoryData.text,
-        userId: new ObjectId(categoryData.userId),
+        userId: new mongoose.Types.ObjectId(categoryData.userId),
         icon: categoryData.icon,
       },
       { upsert: true, new: true }
@@ -74,9 +73,9 @@ export async function deleteCategory(categoryData: ICategory) {
     connectToDB();
 
     return await Category.deleteOne({
-      _id: new ObjectId(categoryData._id),
+      _id: new mongoose.Types.ObjectId(categoryData._id),
     });
   } catch (error: any) {
-    throw new Error(`Failed to add categories: ${error.message}`);
+    throw new Error(`Failed to delete categories: ${error.message}`);
   }
 }

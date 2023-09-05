@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import Icon from "./Icon";
 import { ICategory } from "@/lib/models/category";
@@ -22,22 +21,16 @@ export default function NavOptions(props: {
 
   return (
     <div className="contents w-full">
-      <Link
+      <a
         href="/"
         className={`${props.position}_link 
         ${pathname === "/" && "bg-primary-500"}`}
       >
         <Icon name={"IconHome"} stroke="1" strokeLinejoin="miter" isActive={false} />
-        {props.position === "leftsidebar" ? (
-          <p className="text-dark-2 dark:text-light-1 max-lg:hidden flex relative">
+          <p className="text-dark-2 dark:text-light-1 flex relative">
             Home
           </p>
-        ) : (
-          <p className="text-subtle-medium text-dark-2 dark:text-light-1 max-sm:hidden">
-            {"Home".split(/\s+/)[0]}
-          </p>
-        )}
-      </Link>
+      </a>
       {categoryList.map((category) => {
         const isActive =
           (pathname.includes(category._id.toString().toLowerCase()) &&
