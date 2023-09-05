@@ -80,6 +80,7 @@ export default function Topbar(props: {
           />
         </Menu>
         <Menu
+          right
           className="addToDo"
           onStateChange={isMenuOpen}
           burgerButtonClassName={"text-dark-1 dark:text-light-1 ml-10"}
