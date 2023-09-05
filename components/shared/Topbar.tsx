@@ -23,8 +23,7 @@ export default function Topbar(props: {
   );
   const [open, setOpen] = useState<boolean>(false);
 
-  const pullData = (data: ICategory[]) => {
-  };
+  const pullData = (data: ICategory[]) => {};
   const pullToDo = (data: IToDo) => {
     const updatedCategoryList = categoryList.map((category) => {
       if (category._id === data.categoryId) {
@@ -34,8 +33,10 @@ export default function Topbar(props: {
     });
     setCategoryList(updatedCategoryList);
   };
-  var isMenuOpen = function (state: { isOpen: boolean | ((prevState: boolean) => boolean); }) {
-    console.log(state.isOpen)
+  var isMenuOpen = function (state: {
+    isOpen: boolean | ((prevState: boolean) => boolean);
+  }) {
+    console.log(state.isOpen);
     setOpen(state.isOpen);
   };
   return (
@@ -55,7 +56,7 @@ export default function Topbar(props: {
           />
           <p
             className="text-heading3-bold 
-				text-dark-2 dark:text-light-1 max-xs:hidden"
+				text-dark-2 dark:text-light-1 max-sm:hidden"
           >
             Things To Do
           </p>
@@ -78,7 +79,8 @@ export default function Topbar(props: {
             categories={categoryList}
           />
         </Menu>
-        <Menu className="addToDo"
+        <Menu
+          className="addToDo"
           onStateChange={isMenuOpen}
           burgerButtonClassName={"text-dark-1 dark:text-light-1 ml-10"}
           customBurgerIcon={
