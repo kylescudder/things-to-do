@@ -34,6 +34,9 @@
 .addToDo > .bm-menu {
   padding: 0 !important;
 }
+.addToDo > .bm-menu > .bm-item-list {
+  padding-top: 2rem !important;
+}
 .react-select__single-value {
   @apply text-dark-2 dark:text-light-1 !important;
 }
