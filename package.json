@@ -12,7 +12,7 @@
   "dependencies": {
     "@clerk/nextjs": "^4.23.5",
     "@clerk/themes": "^1.7.5",
-    "@ducanh2912/next-pwa": "^9.5.0",
+    "@ducanh2912/next-pwa": "^9.6.0",
     "@hookform/resolvers": "^3.3.1",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
