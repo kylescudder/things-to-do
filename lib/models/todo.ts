@@ -20,14 +20,14 @@ interface ToDoClass {
   categoryId: mongoose.Types.ObjectId;
 }
 const todoSchema = new mongoose.Schema<ToDoClass>({
-  _id: { type: mongoose.Schema.Types.ObjectId },
-  text: { type: String },
-  targetDate: { type: Date },
-  targetDateString: { type: String },
-  completed: { type: Boolean },
-  completedDate: { type: Date },
-  categoryId: { type: mongoose.Schema.Types.ObjectId },
-});
+	_id: { type: mongoose.Schema.Types.ObjectId },
+	text: { type: String },
+	targetDate: { type: Date },
+	targetDateString: { type: String },
+	completed: { type: Boolean },
+	completedDate: { type: Date },
+	categoryId: { type: mongoose.Schema.Types.ObjectId }
+})
 
 const ToDo = mongoose.models.ToDo || mongoose.model('ToDo', todoSchema)
 
