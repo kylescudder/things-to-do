@@ -47,6 +47,6 @@
   "devDependencies": {
     "@types/react-burger-menu": "^2.8.5",
     "@types/react-datepicker": "^4.19.1",
-    "webpack": "^5.88.2"
+    "webpack": "^5.89.0"
   }
 }
