@@ -31,13 +31,7 @@ body {
 .addToDo > .bm-menu > .bm-item-list {
   padding-top: 2rem !important;
 }
-.react-select__single-value {
-  @apply text-dark-2 dark:text-light-1 !important;
-}
-/*.icon-placeholder {
-  width: 24px;
-  height: 24px;
-}*/
+
 @media screen and (min-width: 768px) {
   .header {
     margin: 56px auto 0;
@@ -121,107 +115,6 @@ body {
   background-color: rgba(255, 255, 255, 1);
   max-width: 96%;
   left: 2%;
-}
-/* Apply this class to the react-datepicker wrapper */
-.react-datepicker {
-  font-family: inherit; /* Use the same font as react-select */
-  position: relative;
-}
-
-/* Apply this class to the react-datepicker input */
-.react-datepicker__input-container input {
-  @apply dark:bg-dark-2 text-dark-2 dark:text-light-1;
-  padding: 8px; /* Match the padding of react-select input */
-  border: 1px solid #ccc; /* Match the border style of react-select input */
-  border-radius: 4px;
-  font-size: inherit; /* Use the same font size as react-select input */
-  outline: none;
-  width: 100%;
-}
-
-/* Apply this class to the react-datepicker calendar */
-.react-datepicker__portal {
-  font-family: inherit; /* Use the same font as react-select */
-}
-
-/* Apply this class to the react-datepicker calendar header */
-.react-datepicker__header {
-  @apply bg-white dark:bg-dark-2 !important;
-  border-bottom: none; /* Remove the border at the bottom */
-  padding: 10px;
-  text-align: center;
-}
-
-.react-datepicker__header > *,
-.react-datepicker__header > .react-datepicker__day-names > * {
-  @apply text-dark-2 dark:text-light-1;
-}
-.react-datepicker__month-container {
-  @apply dark:bg-dark-2;
-}
-.react-datepicker__week > * {
-  @apply text-dark-2 dark:text-light-2;
-}
-.react-datepicker__day--outside-month {
-  @apply text-gray-500;
-}
-/* Apply this class to the react-datepicker month and year dropdowns */
-.react-datepicker__month-dropdown,
-.react-datepicker__year-dropdown {
-  @apply dark:bg-dark-2;
-  border: 1px solid #ccc; /* Match the border style of react-select dropdown options */
-  border-radius: 4px;
-  padding: 5px;
-}
-
-/* Apply this class to the react-datepicker selected day */
-.react-datepicker__day--selected {
-  background-color: #007bff; /* Match the selected option color of react-select */
-  color: #fff; /* Match the text color of selected option in react-select */
-}
-
-/* Apply this class to the react-datepicker today's day */
-.react-datepicker__day--today {
-  font-weight: bold; /* Highlight today's day like react-select's selected option */
-}
-
-/* Apply this class to the react-datepicker week days */
-.react-datepicker__day-name {
-  font-weight: bold;
-}
-
-/* Apply this class to the react-datepicker week numbers */
-.react-datepicker__week-number {
-  color: #999;
-}
-
-/* Apply this class to the react-datepicker footer (actions) */
-.react-datepicker__footer {
-  padding: 10px;
-  text-align: center;
-  background-color: #f2f2f2;
-  border-top: none; /* Remove the border at the top */
-}
-
-/* Apply this class to the react-datepicker action buttons */
-.react-datepicker__today-button,
-.react-datepicker__clear-button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 5px 10px;
-  cursor: pointer;
-  margin: 0 5px;
-}
-.react-datepicker__day:hover,
-.react-datepicker__month-text:hover,
-.react-datepicker__quarter-text:hover,
-.react-datepicker__year-text:hover {
-  @apply text-dark-2;
-}
-.react-datepicker__day--selected {
-  @apply bg-primary-500;
 }
 
 /*Dark mode slider*/
@@ -466,3 +359,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 /*END Slide menu*/
+
+.mantine-Button-root {
+  @apply bg-primary-500 text-light-1 !important;
+}

@@ -15,6 +15,8 @@ import { IIcon } from "@/lib/models/icon";
 import { MainContent } from "@/components/shared/MainContent";
 import "@fontsource/ubuntu";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
+import "@mantine/core/styles.css";
+import "@mantine/dates/styles.css"
 
 export const metadata: Metadata = {
   title: "Things To Do",
@@ -102,7 +104,7 @@ export default async function RootLayout({
           <ColorSchemeScript />
         </head>
         <body>
-          <MantineProvider>
+          <MantineProvider defaultColorScheme="dark">
             <Topbar
               icons={icons}
               userId={userInfo._id}
