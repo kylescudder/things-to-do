@@ -45,7 +45,7 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
-    "@types/react-burger-menu": "^2.8.5",
+    "@types/react-burger-menu": "^2.8.6",
     "@types/react-datepicker": "^4.19.3",
     "webpack": "^5.89.0"
   }
