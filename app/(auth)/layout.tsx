@@ -2,17 +2,20 @@
 import '../globals.css'
 import { Inter } from 'next/font/google'
 import { ClerkProvider } from '@clerk/nextjs'
-import { Metadata } from 'next'
+import type { Metadata, Viewport } from "next";
 import { dark } from '@clerk/themes'
 
 const inter = Inter({ subsets: ['latin'] })
+
+export const viewport: Viewport = {
+  themeColor: "#877EFF",
+};
 
 export const metadata: Metadata = {
 	title: 'Things To Do',
 	description: 'All your To Dos, organised, simplified, accessible...',
 	applicationName: 'Things To Do',
 	manifest: '/manifest.json',
-	themeColor: '#877EFF',
 	icons: [
 		{
 			url: '/assets/maskable_icon_x48',

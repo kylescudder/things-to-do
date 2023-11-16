@@ -1,5 +1,5 @@
 import React from "react";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { ClerkProvider, currentUser } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import "../globals.css";
@@ -18,12 +18,15 @@ import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css"
 
+export const viewport: Viewport = {
+  themeColor: "#877EFF",
+};
+ 
 export const metadata: Metadata = {
   title: "Things To Do",
   description: "All your To Dos, organised, simplified, accessible...",
   applicationName: "Things To Do",
   manifest: "/manifest.json",
-  themeColor: "#877EFF",
   icons: [
     {
       url: "/assets/maskable_icon_x48",
