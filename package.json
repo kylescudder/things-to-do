@@ -19,7 +19,7 @@
     "@mantine/next": "^6.0.21",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
-    "@sentry/nextjs": "^7.72.0",
+    "@sentry/nextjs": "^7.77.0",
     "@clerk/nextjs": "^4.26.2",
     "@clerk/themes": "^1.7.9",
     "@ducanh2912/next-pwa": "^9.7.2",
