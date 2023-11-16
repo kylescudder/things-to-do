@@ -1,12 +1,11 @@
 import React from "react";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { ClerkProvider, currentUser } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import "../globals.css";
+import { redirect } from "next/navigation";
 import Topbar from "@/components/shared/Topbar";
 import { getUserInfo } from "@/lib/actions/user.actions";
-import { redirect } from "next/navigation";
 import { IUser } from "@/lib/models/user";
 import { getCategories } from "@/lib/actions/category.actions";
 import { Toast } from "@/components/shared/Toast";
@@ -14,7 +13,10 @@ import { getIcons } from "@/lib/actions/icon.actions";
 import { ICategory } from "@/lib/models/category";
 import { IIcon } from "@/lib/models/icon";
 import { MainContent } from "@/components/shared/MainContent";
-const inter = Inter({ subsets: ["latin"] });
+import "@fontsource/ubuntu";
+import { ColorSchemeScript, MantineProvider } from "@mantine/core";
+import "@mantine/core/styles.css";
+import "@mantine/dates/styles.css"
 
 export const metadata: Metadata = {
   title: "Things To Do",
@@ -90,24 +92,31 @@ export default async function RootLayout({
 
   const categories: ICategory[] = await getCategories(userInfo._id);
   const icons: IIcon[] = await getIcons();
-  const pullData = () => {};
+
   return (
     <ClerkProvider
       appearance={{
         baseTheme: dark,
       }}
     >
-      <html lang="en">
-        <body className={inter.className}>
-          <Topbar icons={icons} userId={userInfo._id} categories={categories} />
-          <MainContent
-            categories={categories}
-            icons={icons}
-            userId={userInfo._id}
-            children={children}
-          />          <Toast />
-        </body>
-      </html>
+      <MantineProvider>
+        <html lang="en">
+          <body>
+            <Topbar
+              icons={icons}
+              userId={userInfo._id}
+              categories={categories}
+            />
+            <MainContent
+              categories={categories}
+              icons={icons}
+              userId={userInfo._id}
+              children={children}
+            />
+            <Toast />
+          </body>
+        </html>
+      </MantineProvider>
     </ClerkProvider>
   );
 }

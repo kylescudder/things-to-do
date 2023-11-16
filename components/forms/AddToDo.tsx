@@ -68,72 +68,42 @@ const AddToDo = (props: {
     setCategoryId(data._id);
   };
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col justify-start gap-10"
-      >
-        <FormField
-          control={form.control}
-          name="text"
-          render={({ field }) => (
-            <FormItem className="flex flex-col gap-3 w-full">
-              <FormLabel className="text-base-semibold text-dark-2 dark:text-light-2">
-                What to do...
-              </FormLabel>
-              <FormControl>
-                <Input
-                  required={true}
-                  maxLength={100}
-                  max={100}
-                  type="text"
-                  className="account-form_input no-focus dark:bg-dark-2"
-                  placeholder="What do you want to do?"
-                  {...field}
-                />
-              </FormControl>
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="targetDate"
-          render={({ field }) => (
-            <FormItem className="flex flex-col gap-3 w=full">
-              <FormLabel className="text-base-semibold text-dark-2 dark:text-light-2">
-                Target Date
-              </FormLabel>
-              <FormControl>
-                <DatePicker
-                  required={true}
-                  dateFormat="dd/MM/yyyy"
-                  selected={targetDate}
-                  highlightDates={[new Date()]}
-                  onChange={(date) => setTargetDate(date!)}
-                />
-              </FormControl>
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="categoryId"
-          render={({ field }) => (
-            <FormItem className="flex flex-col gap-3 w=full">
-              <FormLabel className="text-base-semibold text-dark-2 dark:text-light-2">
-                Bio
-              </FormLabel>
-              <FormControl>
-                <SelectElem func={pullData} options={options} />
-              </FormControl>
-            </FormItem>
-          )}
-        />
-        <Button className="bg-primary-500" type="submit">
-          Add
-        </Button>
-      </form>
-    </Form>
+    <form
+      onSubmit={form.onSubmit((values) => onSubmit(values))}
+      className="flex flex-col justify-start gap-10"
+    >
+      <TextInput
+        label="What to do?"
+        radius="md"
+        placeholder="What do you want to do?"
+        className="text-dark-2 dark:text-light-2"
+        size="md"
+        {...form.getInputProps("text")}
+      />
+      <DatePickerInput
+        label="Target Date"
+        radius="md"
+        placeholder=""
+        className="text-dark-2 dark:text-light-2"
+        size="md"
+        defaultDate={new Date()}
+        //onChange={(date) => setTargetDate(date!)}
+        {...form.getInputProps("targetDate")}
+      />
+      <Select
+        radius="md"
+        size="md"
+        clearable
+        //transitionProps={{ transition: "pop-bottom-left", duration: 200 }}
+        label="Category"
+        placeholder="Pick one"
+        data={options}
+        {...form.getInputProps("categoryId")}
+      />
+      <Button className="bg-primary-500" type="submit">
+        Add
+      </Button>
+    </form>
   );
 };
 

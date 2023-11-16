@@ -57,49 +57,32 @@ const AddCategory = (props: {
     setIcon(data.icon?.toString());
   };
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col justify-start gap-10"
-      >
-        <FormField
-          control={form.control}
-          name="text"
-          render={({ field }) => (
-            <FormItem className="flex flex-col gap-3 w=full">
-              <FormLabel className="text-base-semibold text-dark-2 dark:text-light-2">
-                Category
-              </FormLabel>
-              <FormControl>
-                <Input
-                  type="text"
-                  className="account-form_input no-focus dark:bg-dark-2"
-                  placeholder="What is the new category?"
-                  {...field}
-                />
-              </FormControl>
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="icon"
-          render={({ field }) => (
-            <FormItem className="flex flex-col gap-3 w=full">
-              <FormLabel className="text-base-semibold text-dark-2 dark:text-light-2">
-                Icon
-              </FormLabel>
-              <FormControl>
-                <SelectElem func={pullData} options={options} />
-              </FormControl>
-            </FormItem>
-          )}
-        />
-        <Button className="bg-primary-500" type="submit">
-          Add
-        </Button>
-      </form>
-    </Form>
+    <form
+      onSubmit={form.onSubmit((values) => onSubmit(values))}
+      className="flex flex-col justify-start gap-10"
+    >
+      <TextInput
+        label="Category name"
+        radius="md"
+        placeholder="What'll it be?"
+        className="text-dark-2 dark:text-light-2"
+        size="md"
+        {...form.getInputProps("text")}
+      />
+      <Select
+        radius="md"
+        size="md"
+        clearable
+        //transitionProps={{ transition: "pop-bottom-left", duration: 200 }}
+        label="Icon"
+        placeholder="Pick one"
+        data={options}
+        {...form.getInputProps("userID")}
+      />
+      <Button className="bg-primary-500" type="submit">
+        Add
+      </Button>
+    </form>
   );
 };
 
