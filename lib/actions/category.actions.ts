@@ -45,7 +45,7 @@ export async function getCategoryCount(id: string) {
 				{ completed: true, completedDate: { $gte: oneHourAgo } },
 				{ completed: false }
 			]
-		}).count()
+		}).countDocuments()
 	} catch (error: any) {
 		throw new Error(`Failed to get category count: ${error.message}`)
 	}
