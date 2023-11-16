@@ -14,14 +14,11 @@ import { ICategory } from "@/lib/models/category";
 import { IIcon } from "@/lib/models/icon";
 import { MainContent } from "@/components/shared/MainContent";
 import "@fontsource/ubuntu";
-import { ColorSchemeScript, MantineProvider } from "@mantine/core";
-import "@mantine/core/styles.css";
-import "@mantine/dates/styles.css"
 
 export const viewport: Viewport = {
   themeColor: "#877EFF",
 };
- 
+
 export const metadata: Metadata = {
   title: "Things To Do",
   description: "All your To Dos, organised, simplified, accessible...",
@@ -102,24 +99,18 @@ export default async function RootLayout({
         baseTheme: dark,
       }}
     >
-      <MantineProvider>
-        <html lang="en">
-          <body>
-            <Topbar
-              icons={icons}
-              userId={userInfo._id}
-              categories={categories}
-            />
-            <MainContent
-              categories={categories}
-              icons={icons}
-              userId={userInfo._id}
-              children={children}
-            />
-            <Toast />
-          </body>
-        </html>
-      </MantineProvider>
+      <html lang="en">
+        <body>
+          <Topbar icons={icons} userId={userInfo._id} categories={categories} />
+          <MainContent
+            categories={categories}
+            icons={icons}
+            userId={userInfo._id}
+            children={children}
+          />
+          <Toast />
+        </body>
+      </html>
     </ClerkProvider>
   );
 }
