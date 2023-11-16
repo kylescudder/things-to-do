@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { IToDo } from '@/lib/models/todo'
 import { clickToDo } from '@/lib/actions/todo.actions'
 import { successToast } from '@/lib/actions/toast.actions'
-import { CheckMark } from './checkmark'
+import Icon from '../shared/Icon'
 
 export default function ToDo(props: {
   todoItem: IToDo,
@@ -50,7 +50,20 @@ export default function ToDo(props: {
 					{' '}
 					{/* Adjusted width and alignment */}
 					<div className="text-dark-2 dark:text-white">
-						<CheckMark completed={data?.completed || false} />
+						{(data.completed) ?
+							<Icon
+								name={"IconCircleCheckFilled"}
+								stroke="1"
+								strokeLinejoin="miter"
+								isActive={false}
+							/> :
+							<Icon
+								name={"IconCircleCheck"}
+								stroke="1"
+								strokeLinejoin="miter"
+								isActive={false}
+							/>
+						}
 					</div>
 				</div>
 			</div>
