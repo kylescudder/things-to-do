@@ -1,86 +1,90 @@
 // app/layout.tsx
-import "../globals.css";
-import { Inter } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
-import { Metadata } from "next";
-import { dark } from "@clerk/themes";
+import '../globals.css'
+import { Inter } from 'next/font/google'
+import { ClerkProvider } from '@clerk/nextjs'
+import { Metadata } from 'next'
+import { dark } from '@clerk/themes'
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: "Things To Do",
-  description: "All your To Dos, organised, simplified, accessible...",
-  applicationName: "Things To Do",
-  manifest: "/manifest.json",
-  themeColor: "#877EFF",
-  icons: [
-    {
-      url: "/assets/maskable_icon_x48",
-      type: "image/png",
-      sizes: "48x48",
-    },
-    {
-      url: "/assets/maskable_icon_x72",
-      type: "image/png",
-      sizes: "72x72",
-    },
-    {
-      url: "/assets/maskable_icon_x96.png",
-      type: "image/png",
-      sizes: "96x96",
-    },
-    {
-      url: "/assets/maskable_icon_x128.png",
-      type: "image/png",
-      sizes: "128x128",
-    },
-    {
-      url: "/assets/maskable_icon_x192.png",
-      type: "image/png",
-      sizes: "192x192",
-      rel: "apple-touch-icon",
-    },
-  ],
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "default",
-    title: "Things To Do",
-  },
-  formatDetection: {
-    telephone: false,
-  },
-  openGraph: {
-    type: "website",
-    siteName: "Things To Do",
-    title: {
-      default: "Things To Do",
-      template: "% - PWA App",
-    },
-    description: "All your To Dos, organised, simplified, accessible...",
-  },
-  twitter: {
-    card: "summary",
-    title: {
-      default: "Things To Do",
-      template: "% - PWA App",
-    },
-    description: "All your To Dos, organised, simplified, accessible...",
-  },
-};
+	title: 'Things To Do',
+	description: 'All your To Dos, organised, simplified, accessible...',
+	applicationName: 'Things To Do',
+	manifest: '/manifest.json',
+	themeColor: '#877EFF',
+	icons: [
+		{
+			url: '/assets/maskable_icon_x48',
+			type: 'image/png',
+			sizes: '48x48'
+		},
+		{
+			url: '/assets/maskable_icon_x72',
+			type: 'image/png',
+			sizes: '72x72'
+		},
+		{
+			url: '/assets/maskable_icon_x96.png',
+			type: 'image/png',
+			sizes: '96x96'
+		},
+		{
+			url: '/assets/maskable_icon_x128.png',
+			type: 'image/png',
+			sizes: '128x128'
+		},
+		{
+			url: '/assets/maskable_icon_x192.png',
+			type: 'image/png',
+			sizes: '192x192',
+			rel: 'apple-touch-icon'
+		}
+	],
+	appleWebApp: {
+		capable: true,
+		statusBarStyle: 'default',
+		title: 'Things To Do'
+	},
+	formatDetection: {
+		telephone: false
+	},
+	openGraph: {
+		type: 'website',
+		siteName: 'Things To Do',
+		title: {
+			default: 'Things To Do',
+			template: '% - PWA App'
+		},
+		description: 'All your To Dos, organised, simplified, accessible...'
+	},
+	twitter: {
+		card: 'summary',
+		title: {
+			default: 'Things To Do',
+			template: '% - PWA App'
+		},
+		description: 'All your To Dos, organised, simplified, accessible...'
+	}
+}
 
 export default function RootLayout({
-  children,
+	children
 }: {
   children: React.ReactNode;
 }) {
-  return (
+	return (
     <ClerkProvider
       appearance={{
         baseTheme: dark,
       }}
     >
       <html lang="en">
-        <body className={`${inter.className} main-container`}>{children}</body>
+        <body
+          className={`${inter.className} flex min-h-screen flex-1 flex-col items-center bg-light-1 dark:bg-dark-1 px-6 pb-10 pt-28 max-md:pb-32 sm:px-10`}
+        >
+          {children}
+        </body>
       </html>
     </ClerkProvider>
   );

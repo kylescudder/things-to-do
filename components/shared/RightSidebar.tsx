@@ -1,11 +1,11 @@
-"use client";
+'use client'
 
-import { ICategory } from "@/lib/models/category";
-import { IIcon } from "@/lib/models/icon";
-import AddToDo from "@/components/forms/AddToDo";
-import AddCategory from "@/components/forms/AddCategory";
-import { useEffect, useState } from "react";
-import { IToDo } from "@/lib/models/todo";
+import { useEffect, useState } from 'react'
+import { ICategory } from '@/lib/models/category'
+import { IIcon } from '@/lib/models/icon'
+import AddToDo from '@/components/forms/AddToDo'
+import AddCategory from '@/components/forms/AddCategory'
+import { IToDo } from '@/lib/models/todo'
 
 export default function RightSidebar(props: {
   categories: ICategory[];
@@ -14,55 +14,58 @@ export default function RightSidebar(props: {
   func: (categories: ICategory[]) => void;
   newToDo: (todo: IToDo) => void;
   menuState: boolean;
+  pullRightSideBarOpen: (open: boolean) => void;
 }) {
-  const [categoryList, setCategoryList] = useState<ICategory[]>(
-    props.categories
-  );
-  const [open, setOpen] = useState<boolean>(props.menuState);
+	const [categoryList, setCategoryList] = useState<ICategory[]>(
+		props.categories
+	)
+	const [open, setOpen] = useState<boolean>(props.menuState)
 
-  useEffect(() => {
-    props.func(categoryList);
-    setOpen(props.menuState);
-  }, [categoryList, props.menuState]);
+	useEffect(() => {
+		props.func(categoryList)
+		setOpen(props.menuState)
+	}, [categoryList, props.menuState])
 
-  const pullData = (data: ICategory) => {
-    const newCatList = [...categoryList, data];
-    newCatList.sort((a, b) => a.text.localeCompare(b.text));
-    setCategoryList(newCatList);
-  };
-  const pullToDo = (data: IToDo) => {
-    props.newToDo(data);
-  };
-  return (
-    <section
-      className={`custom-scrollbar 
+	const pullData = (data: ICategory) => {
+		const newCatList = [...categoryList, data]
+		newCatList.sort((a, b) => a.text.localeCompare(b.text))
+		setCategoryList(newCatList)
+		props.pullRightSideBarOpen(false)
+	}
+	const pullToDo = (data: IToDo) => {
+		props.newToDo(data)
+		props.pullRightSideBarOpen(false)
+	}
+	return (
+		<section
+			className={`custom-scrollbar 
       sticky right-0 top-0 z-20 h-screen w-fit justify-between
       overflow-auto bg-light-2
     dark:bg-dark-2 flex flex-col pb-0 ${
-      open ? "" : "px-6 border-l border-l-dark-4 pt-28 max-md:hidden"
-    }`}
-    >
-      <div className="flex flex-1 flex-col justify-start">
-        <h3 className="text-heading4-medium text-dark-2 dark:text-light-1">
+		open ? '' : 'px-6 border-l border-l-dark-4 pt-28 max-md:hidden'
+		}`}
+		>
+			<div className="flex flex-1 flex-col justify-start">
+				<h3 className="text-heading4-medium text-dark-2 dark:text-light-1">
           Add To Do
-        </h3>
-        <div className="mt-7 flex w-[350px] flex-col gap-9">
-          <AddToDo func={pullToDo} categories={categoryList} />
-        </div>
-      </div>
+				</h3>
+				<div className="mt-7 flex w-[350px] flex-col gap-9">
+					<AddToDo func={pullToDo} categories={categoryList} />
+				</div>
+			</div>
 
-      <div className="flex flex-1 flex-col justify-start">
-        <h3 className="text-heading4-medium text-dark-2 dark:text-light-1">
+			<div className="flex flex-1 flex-col justify-start">
+				<h3 className="text-heading4-medium text-dark-2 dark:text-light-1">
           Add Category
-        </h3>
-        <div className="mt-7 flex w-[350px] flex-col gap-10">
-          <AddCategory
-            icons={props.icons}
-            userId={props.userId}
-            func={pullData}
-          />
-        </div>
-      </div>
-    </section>
-  );
+				</h3>
+				<div className="mt-7 flex w-[350px] flex-col gap-10">
+					<AddCategory
+						icons={props.icons}
+						userId={props.userId}
+						func={pullData}
+					/>
+				</div>
+			</div>
+		</section>
+	)
 }

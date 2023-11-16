@@ -16,12 +16,12 @@ interface CategoryClass {
   todoCount: number;
 }
 const categorySchema = new mongoose.Schema<CategoryClass>({
-  _id: { type: mongoose.Schema.Types.ObjectId },
-  text: { type: String },
-  userId: { type: mongoose.Schema.Types.ObjectId },
-  icon: { type: String },
-  todoCount: { type: Number },
-});
+	_id: { type: mongoose.Schema.Types.ObjectId },
+	text: { type: String },
+	userId: { type: mongoose.Schema.Types.ObjectId },
+	icon: { type: String },
+	todoCount: { type: Number }
+})
 
 const Category = mongoose.models.Category || mongoose.model('Category', categorySchema)
 
