@@ -1,63 +1,62 @@
-"use client";
+'use client'
 
-import React, { useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
-import Icon from "./Icon";
-import { ICategory } from "@/lib/models/category";
-import HoldToDeleteComponent from "../ui/hold-to-delete-button";
-import { deleteToast } from "@/lib/actions/toast.actions";
-import { deleteCategory, getCategoryCount } from "@/lib/actions/category.actions";
+import React, { useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
+import Icon from './Icon'
+import { ICategory } from '@/lib/models/category'
+import HoldToDeleteComponent from '../ui/hold-to-delete-button'
+import { deleteToast } from '@/lib/actions/toast.actions'
+import { deleteCategory, getCategoryCount } from '@/lib/actions/category.actions'
 
 export default function NavOptions(props: {
   position: string;
   categories: ICategory[];
   func: (categories: ICategory[]) => void;
 }) {
-  const [categoryList, setCategoryList] = useState<ICategory[]>(
-    props.categories
-  );
-  const pathname = usePathname();
-  const router = useRouter();
+	const [categoryList, setCategoryList] = useState<ICategory[]>(
+		props.categories
+	)
+	const pathname = usePathname()
+	const router = useRouter()
 
-  return (
-    <div className="contents w-full">
-      <a
-        href="/"
-        className={`${props.position}_link 
-        ${pathname === "/" && "bg-primary-500"}`}
-      >
-        <Icon name={"IconHome"} stroke="1" strokeLinejoin="miter" isActive={false} />
-          <p className="text-dark-2 dark:text-light-1 flex relative">
+	return (
+		<div className="contents w-full">
+			<a
+				href="/"
+				className={`${props.position}_link 
+        ${pathname === '/' && 'bg-primary-500'}`}
+			>
+				<Icon name={'IconHome'} stroke="1" strokeLinejoin="miter" isActive={false} />
+				<p className="text-dark-2 dark:text-light-1 flex relative">
             Home
-          </p>
-      </a>
-      {categoryList.map((category) => {
-        const isActive =
-          (pathname.includes(category._id.toString().toLowerCase()) &&
-            category._id.toString().toLowerCase().length > 1) ||
-          pathname === category._id.toString().toLowerCase();
-        return (
-          <HoldToDeleteComponent
-            key={category._id.toString()}
-            isActive={isActive}
-            text={`${category.text} (${category.todoCount})`}
-            icon={category.icon}
-            holdText={`Deleting ${category.text}...`}
-            onHoldStart={() => {
-              const updatedArray = categoryList.filter(
-                (item) => item._id !== category._id
-              );
-              setCategoryList(updatedArray);
-              deleteToast(category);
-              deleteCategory(category)
-              props.func(updatedArray);
-            }}
-            onHoldEnd={() => {
-              router.push(`/list/${category._id}`);
-            }}
-          ></HoldToDeleteComponent>
-        );
-      })}
-    </div>
-  );
+				</p>
+			</a>
+			{categoryList.map((category) => {
+				const isActive = (pathname.includes(category._id.toString().toLowerCase())
+            && category._id.toString().toLowerCase().length > 1)
+          || pathname === category._id.toString().toLowerCase()
+				return (
+					<HoldToDeleteComponent
+						key={category._id.toString()}
+						isActive={isActive}
+						text={`${category.text} (${category.todoCount})`}
+						icon={category.icon}
+						holdText={`Deleting ${category.text}...`}
+						onHoldStart={() => {
+							const updatedArray = categoryList.filter(
+								(item) => item._id !== category._id
+							)
+							setCategoryList(updatedArray)
+							deleteToast(category)
+							deleteCategory(category)
+							props.func(updatedArray)
+						}}
+						onHoldEnd={() => {
+							router.push(`/list/${category._id}`)
+						}}
+					></HoldToDeleteComponent>
+				)
+			})}
+		</div>
+	)
 }

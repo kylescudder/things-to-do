@@ -10,12 +10,20 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fontsource/ubuntu": "^5.0.8",
+    "@mantine/core": "^7.1.5",
+    "@mantine/dates": "^7.1.5",
+    "@mantine/form": "^7.1.5",
+    "@mantine/hooks": "^7.1.5",
+    "@mantine/modals": "^7.1.5",
+    "@mantine/next": "^6.0.21",
+    "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@sentry/nextjs": "^7.72.0",
     "@clerk/nextjs": "^4.26.2",
     "@clerk/themes": "^1.7.9",
     "@ducanh2912/next-pwa": "^9.7.2",
     "@hookform/resolvers": "^3.3.2",
-    "@radix-ui/react-label": "^2.0.2",
-    "@radix-ui/react-slot": "^1.0.2",
     "@tabler/icons-react": "^2.40.0",
     "@types/node": "20.9.0",
     "@types/react": "18.2.37",
@@ -45,6 +53,13 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.6.0",
+    "@typescript-eslint/parser": "^6.6.0",
+    "eslint": "8.48.0",
+    "postcss": "8.4.30",
+    "postcss-preset-mantine": "^1.9.0",
+    "postcss-simple-vars": "^7.0.1",
+    "typescript": "5.2.2",
     "@types/react-burger-menu": "^2.8.6",
     "@types/react-datepicker": "^4.19.3",
     "webpack": "^5.89.0"

@@ -1,41 +1,32 @@
-"use client";
+'use client'
 
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { useForm } from "react-hook-form";
-import { IToDo } from "@/lib/models/todo";
-import { ICategory } from "@/lib/models/category";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import SelectElem from "../ui/select";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { addToDo } from "@/lib/actions/todo.actions";
-import dayjs from "dayjs";
+import { useForm } from '@mantine/form'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import dayjs from 'dayjs'
+import { IToDo } from '@/lib/models/todo'
+import { ICategory } from '@/lib/models/category'
+import 'react-datepicker/dist/react-datepicker.css'
+import { addToDo } from '@/lib/actions/todo.actions'
+import { Button, Select, TextInput } from '@mantine/core'
+import { DatePickerInput } from '@mantine/dates'
+import { option } from '@/lib/models/select-options'
 
 const AddToDo = (props: {
   categories: ICategory[];
   func: (todo: IToDo) => void;
 }) => {
-  const router = useRouter();
-  const [targetDate, setTargetDate] = useState(new Date());
-  const [categoryId, setCategoryId] = useState("");
+	const router = useRouter()
+	const [targetDate, setTargetDate] = useState(new Date())
+	const [categoryId, setCategoryId] = useState('')
 
-  const options = props.categories.map((element) => ({
-    _id: element._id,
-    icon: element.icon,
-    text: element.text,
+  const options: option[] = props.categories.map((category: ICategory) => ({
+    value: category._id,
+    label: category.text,
   }));
 
-  const form = useForm({
-    defaultValues: {
+	const form = useForm({
+    initialValues: {
       text: "",
       targetDate: new Date(),
       categoryId: "",
@@ -49,24 +40,24 @@ const AddToDo = (props: {
     completed: boolean;
   }
   const onSubmit = async (values: FormUser) => {
-    const payload: IToDo = {
-      _id: "",
-      text: values.text,
-      targetDate: targetDate,
-      targetDateString: dayjs(targetDate).format("DD/MM/YYYY HH:mm"),
-      categoryId: categoryId,
-      completed: values.completed,
-      completedDate: new Date(),
-    };
+  	const payload: IToDo = {
+  		_id: '',
+  		text: values.text,
+  		targetDate,
+  		targetDateString: dayjs(targetDate).format('DD/MM/YYYY HH:mm'),
+  		categoryId,
+  		completed: values.completed,
+  		completedDate: new Date()
+  	}
 
-    const newToDo: IToDo = await addToDo(payload);
-    props.func(newToDo);
-    router.refresh();
-  };
+  	const newToDo: IToDo = await addToDo(payload)
+  	props.func(newToDo)
+  	// router.replace(router.);
+  }
 
   const pullData = (data: ICategory) => {
-    setCategoryId(data._id);
-  };
+  	setCategoryId(data._id)
+  }
   return (
     <form
       onSubmit={form.onSubmit((values) => onSubmit(values))}
@@ -105,6 +96,6 @@ const AddToDo = (props: {
       </Button>
     </form>
   );
-};
+}
 
-export default AddToDo;
+export default AddToDo

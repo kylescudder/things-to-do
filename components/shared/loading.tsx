@@ -1,7 +1,5 @@
-export const Loading = () => {
-  return (
-    <div className="loader-container">
-      <div className="loader" />
-    </div>
-  );
-};
+export const Loading = () => (
+	<div className="loader-container">
+		<div className="loader" />
+	</div>
+)

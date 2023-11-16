@@ -130,3 +130,6 @@ dist
 public/sw.js
 public/sw.js.*
 public/workbox-*
+
+# Sentry Auth Token
+.sentryclirc

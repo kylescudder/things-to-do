@@ -1,39 +1,27 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { useForm } from "react-hook-form";
+import { useForm } from "@mantine/form";
+import { useState } from "react";
 import { IIcon } from "@/lib/models/icon";
 import { addCategory } from "@/lib/actions/category.actions";
 import { ICategory } from "@/lib/models/category";
-import SelectElem from "../ui/select";
-import IOption from "@/lib/models/options";
-import { useState } from "react";
+import { Button, Select, TextInput } from "@mantine/core";
+import { option } from "@/lib/models/select-options";
 
 const AddCategory = (props: {
   icons: IIcon[];
   func: (categories: ICategory) => void;
   userId: string;
 }) => {
-  const [icon, setIcon] = useState("");
-  const options: IOption[] = [];
-  props.icons.forEach((element) => {
-    const option: IOption = {
-      _id: element._id,
-      icon: element.icon,
-      text: element.text,
-    };
-    options.push(option);
-  });
+	const [icon, setIcon] = useState("");
+	
+  const options: option[] = props.icons.map((icon: IIcon) => ({
+    value: icon._id,
+    label: icon.text,
+  }));
+
   const form = useForm({
-    defaultValues: {
+    initialValues: {
       text: "",
       icon: "",
     },
@@ -46,9 +34,9 @@ const AddCategory = (props: {
     const payload: ICategory = {
       _id: "",
       text: values.text,
-      icon: icon,
+      icon,
       userId: props.userId,
-      todoCount: 0
+      todoCount: 0,
     };
     const newCat = await addCategory(payload);
     props.func(newCat);

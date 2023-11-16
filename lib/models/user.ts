@@ -20,24 +20,24 @@ interface UserClass {
   onboarded: boolean;
 }
 const userSchema = new mongoose.Schema<UserClass>({
-  _id: { type: mongoose.Schema.Types.ObjectId },
-  clerkId: { type: String },
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-    min: [3, "Please enter a longer name"],
-    max: [3, "Please enter a shorter name"],
-  },
-  name: {
-    type: String,
-    min: [3, "Please enter a longer name"],
-    max: [3, "Please enter a shorter name"],
-  },
-  bio: { type: String },
-  image: { type: String },
-  onboarded: { type: Boolean, default: false },
-});
+	_id: { type: mongoose.Schema.Types.ObjectId },
+	clerkId: { type: String },
+	username: {
+		type: String,
+		required: true,
+		unique: true,
+		min: [3, 'Please enter a longer name'],
+		max: [3, 'Please enter a shorter name']
+	},
+	name: {
+		type: String,
+		min: [3, 'Please enter a longer name'],
+		max: [3, 'Please enter a shorter name']
+	},
+	bio: { type: String },
+	image: { type: String },
+	onboarded: { type: Boolean, default: false }
+})
 
 const User = mongoose.models.User || mongoose.model('User', userSchema)
 
