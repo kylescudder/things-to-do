@@ -85,7 +85,7 @@ const AddToDo = (props: {
         radius="md"
         size="md"
         clearable
-        //transitionProps={{ transition: "pop-bottom-left", duration: 200 }}
+        transitionProps={{ transition: "pop-bottom-left", duration: 200 }}
         label="Category"
         placeholder="Pick one"
         data={options}

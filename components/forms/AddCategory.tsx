@@ -61,7 +61,7 @@ const AddCategory = (props: {
         radius="md"
         size="md"
         clearable
-        //transitionProps={{ transition: "pop-bottom-left", duration: 200 }}
+        transitionProps={{ transition: "pop-bottom-left", duration: 200 }}
         label="Icon"
         placeholder="Pick one"
         data={options}
