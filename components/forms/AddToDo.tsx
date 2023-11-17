@@ -43,9 +43,9 @@ const AddToDo = (props: {
   	const payload: IToDo = {
   		_id: '',
   		text: values.text,
-  		targetDate,
+  		targetDate: values.targetDate,
   		targetDateString: dayjs(targetDate).format('DD/MM/YYYY HH:mm'),
-  		categoryId,
+  		categoryId: values.categoryId,
   		completed: values.completed,
   		completedDate: new Date()
   	}

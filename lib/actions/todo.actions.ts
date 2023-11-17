@@ -56,15 +56,20 @@ export const clickToDo = async (todoItem: IToDo) => {
 export const addToDo = async (todoItem: IToDo) => {
 	try {
 		connectToDB()
+
+    const newId = new mongoose.Types.ObjectId()
+    if (todoItem._id === '') {
+			todoItem._id = newId.toString()
+    }
+
 		return await ToDo.findOneAndUpdate(
 			{
-				_id: new mongoose.Types.ObjectId()
-			},
+				_id: new mongoose.Types.ObjectId(todoItem._id)
+      },
 			{
+				_id: new mongoose.Types.ObjectId(todoItem._id),
 				text: todoItem.text,
-				targetDate: `${todoItem.targetDate
-					?.toISOString()
-					.substring(0, todoItem.targetDate.toISOString().length - 1)}+00:00`,
+				targetDate: todoItem.targetDate,
 				categoryId: new mongoose.Types.ObjectId(todoItem.categoryId),
 				completed: false
 			},
