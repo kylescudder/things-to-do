@@ -9,7 +9,7 @@ import { Button, Select, TextInput } from '@mantine/core'
 import { type option } from '@/lib/models/select-options'
 
 const AddCategory = (props: { icons: IIcon[], func: (categories: ICategory) => void, userId: string }) => {
-	const [icon, setIcon] = useState('')
+	const [icon] = useState('')
 
 	const options: option[] = props.icons.map((icon: IIcon) => ({
 		value: icon._id,

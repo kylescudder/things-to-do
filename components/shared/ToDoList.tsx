@@ -4,14 +4,16 @@ import React, { useEffect, useState } from 'react'
 import { type IToDo } from '@/lib/models/todo'
 import ToDo from '../ui/ToDo'
 
-export default function ToDoList (props: { todos: IToDo[] }): JSX.Element {
+export default function ToDoList (props: { todos: IToDo[] | null }): JSX.Element {
 	const [todoList, setToDoList] = useState<IToDo[]>([])
 
 	useEffect(() => {
 		function fetchTodos (): void {
 			try {
-				const fetchedTodos: IToDo[] = props.todos
-				setToDoList(fetchedTodos)
+				const fetchedTodos: IToDo[] | null = props.todos
+				if (fetchedTodos !== null) {
+					setToDoList(fetchedTodos)
+				}
 			} catch (error) {
 				console.error('Error fetching todos:', error)
 			}
@@ -20,7 +22,7 @@ export default function ToDoList (props: { todos: IToDo[] }): JSX.Element {
 		fetchTodos()
 	}, [])
 
-	const pullData = (data: IToDo) => {
+	const pullData = (data: IToDo): void => {
 		setToDoList((prevTodoList) => {
 			const updatedList = prevTodoList.filter((todo) => todo._id !== data._id)
 

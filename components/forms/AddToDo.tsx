@@ -15,13 +15,14 @@ import { type option } from '@/lib/models/select-options'
 
 const AddToDo = (props: { categories: ICategory[] | null, todoAdded: (todo: IToDo) => void }) => {
 	const router = useRouter()
-	const [targetDate, setTargetDate] = useState(new Date())
-	const [categoryId, setCategoryId] = useState('')
+	const [targetDate] = useState(new Date())
 
-	const options: option[] = props.categories!.map((category: ICategory | null) => ({
-		value: category!._id,
-		label: category!.text
-	}))
+	if (props.categories !== null) {
+		const options: option[] = props.categories.map((category: ICategory | null) => ({
+			value: category!._id,
+			label: category!.text
+		}))
+	}
 
 	const form = useForm({
 		initialValues: {

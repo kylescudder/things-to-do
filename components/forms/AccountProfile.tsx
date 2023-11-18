@@ -17,10 +17,10 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
 	const pathname = usePathname()
 	const form = useForm({
 		initialValues: {
-			image: user?.image ? user.image : '',
-			username: user?.username ? user.username : '',
-			name: user?.name ? user.name : '',
-			bio: user?.bio ? user.bio : ''
+			image: user?.image !== null ? user.image : '',
+			username: user?.username !== null ? user.username : '',
+			name: user?.name !== null ? user.name : '',
+			bio: user?.bio !== null ? user.bio : ''
 		}
 	})
 	const [imageString, setImageString] = useState<string>(form.values.image)
@@ -97,7 +97,9 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
 				size="md"
 				{...form.getInputProps('image')}
 				onChange={(e) => {
-					handleImage(e!)
+					if (e !== null) {
+						handleImage(e)
+					}
 				}}
 			/>
 			<TextInput
