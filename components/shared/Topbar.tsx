@@ -16,11 +16,11 @@ import { type IIcon } from '@/lib/models/icon'
 import { type IToDo } from '@/lib/models/todo'
 
 export default function Topbar (props: {
-	categories: ICategory[]
+	categories: ICategory[] | null
 	icons: IIcon[]
 	userId: string
 }) {
-	const [categoryList, setCategoryList] = useState<ICategory[]>(
+	const [categoryList, setCategoryList] = useState<ICategory[] | null>(
 		props.categories
 	)
 	const [open, setOpen] = useState<boolean>(false)
@@ -38,7 +38,7 @@ export default function Topbar (props: {
 
 	}
 	const pullToDo = (data: IToDo) => {
-		const updatedCategoryList = categoryList.map((category) => {
+		const updatedCategoryList = categoryList!.map((category) => {
 			if (category._id === data.categoryId) {
 				category.todoCount++
 			}

@@ -86,7 +86,7 @@ export default async function RootLayout ({ children }: { children: React.ReactN
 	const userInfo: IUser | null = await getUserInfo(user.id)
 	if (!userInfo?.onboarded) redirect('/onboarding')
 
-	const categories: ICategory[] | null = await getCategories(userInfo._id);
+	const categories: ICategory[] | null = await getCategories(userInfo._id)
 	const icons: IIcon[] = await getIcons()
 
 	return (

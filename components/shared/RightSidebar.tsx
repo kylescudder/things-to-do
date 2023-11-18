@@ -8,7 +8,7 @@ import AddCategory from '@/components/forms/AddCategory'
 import { type IToDo } from '@/lib/models/todo'
 
 export default function RightSidebar (props: {
-	categories: ICategory[]
+	categories: ICategory[] | null
 	icons: IIcon[]
 	userId: string
 	func: (categories: ICategory[]) => void
@@ -16,16 +16,18 @@ export default function RightSidebar (props: {
 	menuState: boolean
 	pullRightSideBarOpen: (open: boolean) => void
 }): JSX.Element {
-	const [categoryList, setCategoryList] = useState<ICategory[]>(props.categories)
+	const [categoryList, setCategoryList] = useState<ICategory[] | null>(
+		props.categories
+	)
 	const [open, setOpen] = useState<boolean>(props.menuState)
 
 	useEffect(() => {
-		props.func(categoryList)
+		props.func(categoryList!)
 		setOpen(props.menuState)
 	}, [categoryList, props.menuState])
 
 	const pullData = (data: ICategory): void => {
-		const newCatList = [...categoryList, data]
+		const newCatList = [...categoryList!, data]
 		newCatList.sort((a, b) => a.text.localeCompare(b.text))
 		setCategoryList(newCatList)
 		props.pullRightSideBarOpen(false)
@@ -39,19 +41,29 @@ export default function RightSidebar (props: {
 			className={`custom-scrollbar 
       sticky right-0 top-0 z-20 h-screen w-fit justify-between
       overflow-auto bg-light-2
-    dark:bg-dark-2 flex flex-col pb-0 ${open ? '' : 'px-6 border-l border-l-dark-4 pt-28 max-md:hidden'}`}
+    dark:bg-dark-2 flex flex-col pb-0 ${
+		open ? '' : 'px-6 border-l border-l-dark-4 pt-28 max-md:hidden'
+		}`}
 		>
 			<div className="flex flex-1 flex-col justify-start">
-				<h3 className="text-heading4-medium text-dark-2 dark:text-light-1">Add To Do</h3>
+				<h3 className="text-heading4-medium text-dark-2 dark:text-light-1">
+          Add To Do
+				</h3>
 				<div className="mt-7 flex w-[350px] flex-col gap-9">
 					<AddToDo todoAdded={todoAdded} categories={categoryList} />
 				</div>
 			</div>
 
 			<div className="flex flex-1 flex-col justify-start">
-				<h3 className="text-heading4-medium text-dark-2 dark:text-light-1">Add Category</h3>
+				<h3 className="text-heading4-medium text-dark-2 dark:text-light-1">
+          Add Category
+				</h3>
 				<div className="mt-7 flex w-[350px] flex-col gap-10">
-					<AddCategory icons={props.icons} userId={props.userId} func={pullData} />
+					<AddCategory
+						icons={props.icons}
+						userId={props.userId}
+						func={pullData}
+					/>
 				</div>
 			</div>
 		</section>

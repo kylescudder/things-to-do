@@ -10,10 +10,12 @@ import { deleteCategory } from '@/lib/actions/category.actions'
 
 export default function NavOptions (props: {
 	position: string
-	categories: ICategory[]
+	categories: ICategory[] | null
 	func: (categories: ICategory[]) => void
 }): JSX.Element {
-	const [categoryList, setCategoryList] = useState<ICategory[]>(props.categories)
+	const [categoryList, setCategoryList] = useState<ICategory[] | null>(
+		props.categories
+	)
 	const pathname = usePathname()
 	const router = useRouter()
 
@@ -24,14 +26,19 @@ export default function NavOptions (props: {
 				className={`${props.position}_link 
         ${pathname === '/' && 'bg-primary-500'}`}
 			>
-				<Icon name={'IconHome'} stroke="1" strokeLinejoin="miter" isActive={false} />
+				<Icon
+					name={'IconHome'}
+					stroke="1"
+					strokeLinejoin="miter"
+					isActive={false}
+				/>
 				<p className="text-dark-2 dark:text-light-1 flex relative">Home</p>
 			</a>
-			{categoryList.map((category) => {
+			{categoryList!.map((category) => {
 				const isActive =
-					(pathname.includes(category._id.toString().toLowerCase()) &&
-						category._id.toString().toLowerCase().length > 1) ||
-					pathname === category._id.toString().toLowerCase()
+          (pathname.includes(category._id.toString().toLowerCase()) &&
+            category._id.toString().toLowerCase().length > 1) ||
+          pathname === category._id.toString().toLowerCase()
 				return (
 					<HoldToDeleteComponent
 						key={category._id.toString()}
@@ -40,7 +47,9 @@ export default function NavOptions (props: {
 						icon={category.icon}
 						holdText={`Deleting ${category.text}...`}
 						onHoldStart={() => {
-							const updatedArray = categoryList.filter((item) => item._id !== category._id)
+							const updatedArray = categoryList!.filter(
+								(item) => item._id !== category._id
+							)
 							setCategoryList(updatedArray)
 							deleteToast(category)
 							deleteCategory(category)

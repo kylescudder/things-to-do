@@ -10,16 +10,15 @@ import { type IToDo } from '@/lib/models/todo'
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const MainContent = (props: {
-	categories: ICategory[]
+	categories: ICategory[] | null
 	icons: IIcon[]
 	userId: string
 	children: ReactNode
 }) => {
-	const [categoryList, setCategoryList] = useState<ICategory[]>(
+	const [categoryList, setCategoryList] = useState<ICategory[] | null>(
 		props.categories
 	)
-	useEffect(() => {
-	}, categoryList)
+	useEffect(() => {}, categoryList!)
 
 	const pullData = async (data: ICategory[]) => {
 		const newCatList = [...data]
@@ -27,7 +26,7 @@ export const MainContent = (props: {
 		setCategoryList(newCatList)
 	}
 	const pullToDo = (data: IToDo) => {
-		const updatedCategoryList = categoryList.map((category) => {
+		const updatedCategoryList = categoryList!.map((category) => {
 			if (category._id === data.categoryId) {
 				category.todoCount += 1
 			}
@@ -36,14 +35,15 @@ export const MainContent = (props: {
 
 		setCategoryList(updatedCategoryList)
 	}
-	const pullRightSideBarOpen = () => {
-	}
+	const pullRightSideBarOpen = () => {}
 	return (
 		<CustomThemeProvider>
 			<main className="flex flex-row">
 				<LeftSidebar func={pullData} categories={categoryList} />
-				<section className="flex min-h-screen flex-1 flex-col items-center bg-light-1
-				dark:bg-dark-1 px-6 pb-10 pt-16 max-md:pb-32 sm:px-10">
+				<section
+					className="flex min-h-screen flex-1 flex-col items-center bg-light-1
+				dark:bg-dark-1 px-6 pb-10 pt-16 max-md:pb-32 sm:px-10"
+				>
 					<div className="w-full max-w-4xl min-h-full">{props.children}</div>
 				</section>
 				<RightSidebar

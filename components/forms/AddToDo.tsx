@@ -13,14 +13,14 @@ import { Button, Select, TextInput } from '@mantine/core'
 import { DateTimePicker } from '@mantine/dates'
 import { type option } from '@/lib/models/select-options'
 
-const AddToDo = (props: { categories: ICategory[], todoAdded: (todo: IToDo) => void }) => {
+const AddToDo = (props: { categories: ICategory[] | null, todoAdded: (todo: IToDo) => void }) => {
 	const router = useRouter()
 	const [targetDate, setTargetDate] = useState(new Date())
 	const [categoryId, setCategoryId] = useState('')
 
-	const options: option[] = props.categories.map((category: ICategory) => ({
-		value: category._id,
-		label: category.text
+	const options: option[] = props.categories!.map((category: ICategory | null) => ({
+		value: category!._id,
+		label: category!.text
 	}))
 
 	const form = useForm({
@@ -48,8 +48,8 @@ const AddToDo = (props: { categories: ICategory[], todoAdded: (todo: IToDo) => v
 			completedDate: new Date()
 		}
 
-		const newToDo: IToDo = await addToDo(payload)
-		props.todoAdded(newToDo)
+		const newToDo: IToDo | null = await addToDo(payload)
+		props.todoAdded(newToDo!)
 	}
 
 	const pullData = (data: ICategory) => {
