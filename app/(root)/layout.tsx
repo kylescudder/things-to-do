@@ -79,7 +79,8 @@ export const metadata: Metadata = {
 	}
 }
 
-export default async function RootLayout ({ children }: { children: React.ReactNode }) {
+export default async function RootLayout ({ children }: { children: React.ReactNode }):
+Promise<React.JSX.Element | null> {
 	const user = await currentUser()
 	if (user === null) return null
 
