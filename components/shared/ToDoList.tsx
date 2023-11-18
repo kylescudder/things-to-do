@@ -1,14 +1,14 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { IToDo } from '@/lib/models/todo'
+import { type IToDo } from '@/lib/models/todo'
 import ToDo from '../ui/ToDo'
 
-export default function ToDoList(props: { todos: IToDo[] }) {
+export default function ToDoList (props: { todos: IToDo[] }): JSX.Element {
 	const [todoList, setToDoList] = useState<IToDo[]>([])
 
 	useEffect(() => {
-		async function fetchTodos() {
+		function fetchTodos (): void {
 			try {
 				const fetchedTodos: IToDo[] = props.todos
 				setToDoList(fetchedTodos)
@@ -24,7 +24,7 @@ export default function ToDoList(props: { todos: IToDo[] }) {
 		setToDoList((prevTodoList) => {
 			const updatedList = prevTodoList.filter((todo) => todo._id !== data._id)
 
-			if (data.completed === true) {
+			if (data.completed) {
 				updatedList.push(data) // Add the completed task back to the list
 			} else {
 				updatedList.push(data) // Update the task in the list
@@ -39,7 +39,7 @@ export default function ToDoList(props: { todos: IToDo[] }) {
 		})
 	}
 
-	if (!todoList) {
+	if (todoList === null) {
 		return <p>Loading...</p>
 	}
 	return (

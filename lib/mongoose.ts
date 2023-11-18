@@ -6,7 +6,7 @@ export const connectToDB = async () => {
 	// Set strict query mode for Mongoose to prevent unknown field queries.
 	mongoose.set('strictQuery', true)
 
-	if (!process.env.MONGODB_URL) return console.log('Missing MongoDB URL')
+	if (!process.env.MONGODB_URL) { console.log('Missing MongoDB URL'); return }
 
 	// If the connection is already established, return without creating a new connection.
 	if (isConnected) {

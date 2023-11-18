@@ -1,10 +1,10 @@
 'use client'
 
 import { toast } from 'react-toastify'
-import { IToDo } from '../models/todo'
-import { ICategory } from '../models/category'
+import { type IToDo } from '../models/todo'
+import { type ICategory } from '../models/category'
 
-export const successToast = async (todoItem: IToDo) => {
+export const successToast = async (todoItem: IToDo): Promise<void> => {
 	let text: string
 	if (todoItem.completed) {
 		text = `🥳🎉 Completed ${todoItem.text}`
@@ -23,7 +23,7 @@ export const successToast = async (todoItem: IToDo) => {
 	})
 }
 
-export const deleteToast = async (category: ICategory) => {
+export const deleteToast = async (category: ICategory): Promise<void> => {
 	toast.error(`${category.text} deleted!`, {
 		position: 'top-right',
 		autoClose: 2500,
@@ -36,7 +36,7 @@ export const deleteToast = async (category: ICategory) => {
 	})
 }
 
-export const warningToast = async (message: string) => {
+export const warningToast = async (message: string): Promise<void> => {
 	toast.warning(`${message}`, {
 		position: 'top-right',
 		autoClose: 2500,

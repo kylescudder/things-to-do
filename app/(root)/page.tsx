@@ -5,7 +5,7 @@ import { UserButton, currentUser } from '@clerk/nextjs'
 import { redirect } from 'next/navigation'
 import { getUserInfo } from '@/lib/actions/user.actions'
 
-async function Page() {
+async function Page () {
 	const user = await currentUser()
 	if (!user) return null
 

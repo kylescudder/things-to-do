@@ -2,22 +2,22 @@ import mongoose from 'mongoose'
 
 // 1. Create an interface representing a document in MongoDB.
 export interface IUser {
-  _id: string;
-	clerkId: string;
-  username: string;
-  name: string;
-  bio: string;
-  image: string;
-  onboarded: boolean;
+	_id: string
+	clerkId: string
+	username: string
+	name: string
+	bio: string
+	image: string
+	onboarded: boolean
 }
 interface UserClass {
-  _id: mongoose.Types.ObjectId;
-  clerkId: string;
-  username: string;
-  name: string;
-  bio: string;
-  image: string;
-  onboarded: boolean;
+	_id: mongoose.Types.ObjectId
+	clerkId: string
+	username: string
+	name: string
+	bio: string
+	image: string
+	onboarded: boolean
 }
 const userSchema = new mongoose.Schema<UserClass>({
 	_id: { type: mongoose.Schema.Types.ObjectId },
@@ -39,6 +39,6 @@ const userSchema = new mongoose.Schema<UserClass>({
 	onboarded: { type: Boolean, default: false }
 })
 
-const User = mongoose.models.User || mongoose.model('User', userSchema)
+const User = mongoose.models.User !== null || mongoose.model('User', userSchema)
 
 export default User

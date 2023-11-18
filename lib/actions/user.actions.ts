@@ -2,13 +2,13 @@
 
 import { revalidatePath } from 'next/cache'
 import { clerkClient } from '@clerk/nextjs'
-import User, { IUser } from '../models/user'
+import User, { type IUser } from '../models/user'
 import { connectToDB } from '../mongoose'
 import { convertBase64ToFile } from '../utils'
 
-export async function getUserInfo(id: string) {
+export async function getUserInfo (id: string): Promise<IUser | null> {
 	try {
-		connectToDB()
+		await connectToDB()
 
 		return await User.findOne({
 			clerkId: id
@@ -18,9 +18,9 @@ export async function getUserInfo(id: string) {
 	}
 }
 
-export async function updateUser(userData: IUser, path: string) {
+export async function updateUser (userData: IUser, path: string): Promise<void> {
 	try {
-		connectToDB()
+		await connectToDB()
 
 		await User.findOneAndUpdate(
 			{ clerkId: userData.clerkId },
@@ -37,7 +37,7 @@ export async function updateUser(userData: IUser, path: string) {
 			const file: File = convertBase64ToFile(userData.image)
 			clerkClient.users
 				.updateUserProfileImage(userData.clerkId, { file })
-				.catch((err) => console.table(err.errors))
+				.catch((err) => { console.table(err.errors) })
 		}
 
 		if (path === '/profile/edit') {

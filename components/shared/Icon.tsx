@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { IconCategory } from '@tabler/icons-react'
 
 interface IconProps {
-  name: string;
-  stroke?: string;
-  isActive: boolean;
-  strokeLinejoin?: string;
+	name: string
+	stroke?: string
+	isActive: boolean
+	strokeLinejoin?: string
 }
 
-export default function Icon(props: IconProps) {
+export default function Icon (props: IconProps): JSX.Element {
 	const [IconComponent, setIconComponent] = useState<React.ElementType | null>(
 		null
 	)
@@ -17,7 +17,7 @@ export default function Icon(props: IconProps) {
 		import('@tabler/icons-react')
 			.then((module) => {
 				const iconComponent = module[props.name] as React.ElementType
-				if (iconComponent) {
+				if (iconComponent !== null) {
 					setIconComponent(iconComponent)
 				}
 			})
@@ -25,7 +25,7 @@ export default function Icon(props: IconProps) {
 				console.error('Error loading icon:', error)
 			})
 	}, [props.name])
-	if (!props.name) {
+	if (props.name === null) {
 		return (
 			<IconCategory
 				className={`text-dark-2 dark:text-light-1 ${
@@ -36,13 +36,13 @@ export default function Icon(props: IconProps) {
 			/>
 		)
 	}
-	if (!IconComponent) {
+	if (IconComponent === null) {
 		return (
 			<>
 				<div
 					className={`animated ${
-						props.name === 'IconCircleCheckFilled'
-            || (props.name === 'IconCircleCheck' && 'float-right')
+						props.name === 'IconCircleCheckFilled' ||
+            (props.name === 'IconCircleCheck' && 'float-right')
 					}`}
 				>
 					<div className="avatar">
@@ -58,8 +58,8 @@ export default function Icon(props: IconProps) {
 			className={`text-dark-2 dark:text-light-1 ${
 				props.isActive && 'bg-primary-500 text-light-1'
 			} ${
-				props.name === 'IconCircleCheckFilled'
-        || (props.name === 'IconCircleCheck' && 'float-right')
+				props.name === 'IconCircleCheckFilled' ||
+        (props.name === 'IconCircleCheck' && 'float-right')
 			}`}
 			{...(props.stroke && { stroke: props.stroke })}
 			{...(props.strokeLinejoin && { strokeLinejoin: props.strokeLinejoin })}

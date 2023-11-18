@@ -1,20 +1,20 @@
-import React, { Component, MouseEvent, TouchEvent } from 'react'
+import React, { Component } from 'react'
 import Icon from '../shared/Icon'
 import { warningToast } from '@/lib/actions/toast.actions'
 
 interface Props {
-  text: string;
-  holdText: string;
-  icon: string;
-  isActive: boolean;
-  onHoldStart: () => void; // Function to execute on hold start
-  onHoldEnd: () => void; // Function to execute on hold end
+	text: string
+	holdText: string
+	icon: string
+	isActive: boolean
+	onHoldStart: () => void // Function to execute on hold start
+	onHoldEnd: () => void // Function to execute on hold end
 }
 
 interface State {
-  holding: boolean;
-  held: boolean;
-  timerProgress: number;
+	holding: boolean
+	held: boolean
+	timerProgress: number
 }
 
 class HoldToDeleteComponent extends Component<Props, State> {
@@ -22,7 +22,7 @@ class HoldToDeleteComponent extends Component<Props, State> {
 
 	private holdStartTime: number | null = null
 
-	constructor(props: Props) {
+	constructor (props: Props) {
 		super(props)
 		this.state = {
 			holding: false,
@@ -31,11 +31,11 @@ class HoldToDeleteComponent extends Component<Props, State> {
 		}
 	}
 
-	handleHoldStart = () => {
+	handleHoldStart = (): void => {
 		this.holdStartTime = Date.now()
 		setTimeout(() => {
 			this.timer = setInterval(() => {
-				const { timerProgress, held, holding } = this.state
+				const { timerProgress, held } = this.state
 				if (!this.props.isActive && held) {
 					if (timerProgress < 100) {
 						this.setState({ timerProgress: timerProgress + 1 })
@@ -57,9 +57,7 @@ class HoldToDeleteComponent extends Component<Props, State> {
 		setTimeout(() => {
 			if (this.state.holding && Date.now() - this.holdStartTime! >= 1000) {
 				if (this.props.isActive) {
-					warningToast(
-						'You can\'t delete the category you are currently viewing!'
-					)
+					warningToast('You can\'t delete the category you are currently viewing!')
 				} else {
 					this.setState({ held: true })
 				}
@@ -67,13 +65,13 @@ class HoldToDeleteComponent extends Component<Props, State> {
 		}, 1000)
 	}
 
-	handleHoldEnd = () => {
-		if (this.timer) {
+	handleHoldEnd = (): void => {
+		if (this.timer !== null) {
 			clearInterval(this.timer)
 			this.timer = null
 		}
 
-		if (this.holdStartTime && Date.now() - this.holdStartTime < 1000) {
+		if (this.holdStartTime !== null && Date.now() - this.holdStartTime < 1000) {
 			this.setState({ held: false })
 			this.props.onHoldEnd()
 		}
@@ -83,11 +81,9 @@ class HoldToDeleteComponent extends Component<Props, State> {
 		this.setState({ holding: false, held: false, timerProgress: 0 })
 	}
 
-	render() {
+	render () {
 		const { holding, held, timerProgress } = this.state
-		const {
-			text, holdText, icon, isActive
-		} = this.props
+		const { text, holdText, icon, isActive } = this.props
 
 		return (
 			<div>
@@ -102,19 +98,16 @@ class HoldToDeleteComponent extends Component<Props, State> {
 					${holding ? 'cursor-default' : 'cursor-pointer'}
 					${isActive && 'bg-primary-500 text-light-1'}`}
 				>
-					{held ? (
-						<div
-							className="absolute inset-0 bg-sky-800 rounded"
-							style={{ width: `${timerProgress}%`, transition: 'width 0.1s' }}
-						></div>
-					) : null}
+					{held
+						? (
+							<div
+								className="absolute inset-0 bg-sky-800 rounded"
+								style={{ width: `${timerProgress}%`, transition: 'width 0.1s' }}
+							></div>
+						)
+						: null}
 					<div className="flex items-center">
-						<Icon
-							name={icon}
-							stroke="1"
-							strokeLinejoin="miter"
-							isActive={isActive}
-						/>
+						<Icon name={icon} stroke="1" strokeLinejoin="miter" isActive={isActive} />
 						<p className="pl-4">{held ? holdText : text}</p>
 					</div>
 				</button>

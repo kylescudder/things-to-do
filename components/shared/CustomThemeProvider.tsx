@@ -1,8 +1,8 @@
-import React, { ReactNode } from 'react'
+import React, { type ReactNode } from 'react'
 import { ThemeProvider } from 'next-themes'
 
 interface CustomThemeProviderProps {
-  children: ReactNode;
+	children: ReactNode
 }
 
 const CustomThemeProvider: React.FC<CustomThemeProviderProps> = ({

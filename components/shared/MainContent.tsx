@@ -1,19 +1,19 @@
 'use client'
 
-import { ReactNode, useEffect, useState } from 'react'
-import { ICategory } from '@/lib/models/category'
+import React, { type ReactNode, useEffect, useState } from 'react'
+import { type ICategory } from '@/lib/models/category'
 import LeftSidebar from './LeftSidebar'
 import RightSidebar from './RightSidebar'
-import { IIcon } from '@/lib/models/icon'
+import { type IIcon } from '@/lib/models/icon'
 import CustomThemeProvider from '@/components/shared/CustomThemeProvider'
-import { IToDo } from '@/lib/models/todo'
+import { type IToDo } from '@/lib/models/todo'
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const MainContent = (props: {
-  categories: ICategory[];
-  icons: IIcon[];
-  userId: string;
-  children: ReactNode;
+	categories: ICategory[]
+	icons: IIcon[]
+	userId: string
+	children: ReactNode
 }) => {
 	const [categoryList, setCategoryList] = useState<ICategory[]>(
 		props.categories
@@ -39,24 +39,25 @@ export const MainContent = (props: {
 	const pullRightSideBarOpen = () => {
 	}
 	return (
-    <CustomThemeProvider>
-      <main className="flex flex-row">
-        <LeftSidebar func={pullData} categories={categoryList} />
-        <section className="flex min-h-screen flex-1 flex-col items-center bg-light-1 dark:bg-dark-1 px-6 pb-10 pt-16 max-md:pb-32 sm:px-10">
-          <div className="w-full max-w-4xl min-h-full">{props.children}</div>
-        </section>
-        <RightSidebar
-          menuState={false}
-          categories={categoryList}
-          icons={props.icons}
-          userId={props.userId}
-          func={pullData}
-          newToDo={pullToDo}
-          pullRightSideBarOpen={pullRightSideBarOpen}
-        />
-      </main>
-    </CustomThemeProvider>
-  );
+		<CustomThemeProvider>
+			<main className="flex flex-row">
+				<LeftSidebar func={pullData} categories={categoryList} />
+				<section className="flex min-h-screen flex-1 flex-col items-center bg-light-1
+				dark:bg-dark-1 px-6 pb-10 pt-16 max-md:pb-32 sm:px-10">
+					<div className="w-full max-w-4xl min-h-full">{props.children}</div>
+				</section>
+				<RightSidebar
+					menuState={false}
+					categories={categoryList}
+					icons={props.icons}
+					userId={props.userId}
+					func={pullData}
+					newToDo={pullToDo}
+					pullRightSideBarOpen={pullRightSideBarOpen}
+				/>
+			</main>
+		</CustomThemeProvider>
+	)
 }
 
 export default MainContent

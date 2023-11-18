@@ -3,9 +3,9 @@
 import { connectToDB } from '../mongoose'
 import Icon from '../models/icon'
 
-export async function getIcons() {
+export async function getIcons () {
 	try {
-		connectToDB()
+		await connectToDB()
 
 		return await Icon.find()
 			.collation({ locale: 'en', strength: 1 }) // Case-insensitive collation

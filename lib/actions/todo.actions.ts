@@ -3,14 +3,14 @@
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import mongoose from 'mongoose'
-import ToDo, { IToDo } from '../models/todo'
+import ToDo, { type IToDo } from '../models/todo'
 import { connectToDB } from '../mongoose'
 
 dayjs.extend(utc)
 
-export async function getToDos(id: string) {
+export async function getToDos (id: string): Promise<IToDo[] | null> {
 	try {
-		connectToDB()
+		await connectToDB()
 
 		const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000) // Calculate the date 1 hour ago
 		const todos: IToDo[] = await ToDo.find({
@@ -19,15 +19,19 @@ export async function getToDos(id: string) {
 				{ completed: true, completedDate: { $gte: oneHourAgo } },
 				{ completed: false }
 			]
-		}).sort({
-			completed: 1,
-			targetDate: 1
-		}).lean()
+		})
+			.sort({
+				completed: 1,
+				targetDate: 1
+			})
+			.lean()
 
 		if (todos !== undefined) {
 			todos.forEach((todo) => {
-				if (todo.targetDate) {
-					todo.targetDateString = dayjs(todo.targetDate).format('DD/MM/YYYY HH:mm')
+				if (todo.targetDate !== null) {
+					todo.targetDateString = dayjs(todo.targetDate).format(
+						'DD/MM/YYYY HH:mm'
+					)
 				} else {
 					todo.targetDateString = ''
 				}
@@ -39,33 +43,41 @@ export async function getToDos(id: string) {
 		throw new Error(`Failed to get todos: ${error.message}`)
 	}
 }
-export const clickToDo = async (todoItem: IToDo) => {
+export const clickToDo = async (todoItem: IToDo): Promise<void> => {
 	try {
-		connectToDB()
+		await connectToDB()
 		todoItem.completedDate = new Date()
-		await ToDo.updateOne({
-			_id: todoItem._id
-		}, {
-			completed: todoItem.completed,
-			completedDate: `${todoItem.completedDate.toISOString().substring(0, todoItem.completedDate.toISOString().length - 1)}+00:00`
-		}).lean()
+		await ToDo.updateOne(
+			{
+				_id: todoItem._id
+			},
+			{
+				completed: todoItem.completed,
+				completedDate: `${todoItem.completedDate
+					.toISOString()
+					.substring(
+						0,
+						todoItem.completedDate.toISOString().length - 1
+					)}+00:00`
+			}
+		).lean()
 	} catch (error: any) {
-		throw new Error(`Failed to get todos: ${error.message}`)
+		throw new Error(`Failed to click todo: ${error.message}`)
 	}
 }
-export const addToDo = async (todoItem: IToDo) => {
+export const addToDo = async (todoItem: IToDo): Promise<IToDo | null> => {
 	try {
-		connectToDB()
+		await connectToDB()
 
-    const newId = new mongoose.Types.ObjectId()
-    if (todoItem._id === '') {
+		const newId = new mongoose.Types.ObjectId()
+		if (todoItem._id === '') {
 			todoItem._id = newId.toString()
-    }
+		}
 
 		return await ToDo.findOneAndUpdate(
 			{
 				_id: new mongoose.Types.ObjectId(todoItem._id)
-      },
+			},
 			{
 				_id: new mongoose.Types.ObjectId(todoItem._id),
 				text: todoItem.text,
@@ -76,6 +88,6 @@ export const addToDo = async (todoItem: IToDo) => {
 			{ upsert: true, new: true }
 		)
 	} catch (error: any) {
-		throw new Error(`Failed to get todos: ${error.message}`)
+		throw new Error(`Failed to add todo: ${error.message}`)
 	}
 }

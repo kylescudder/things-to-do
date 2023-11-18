@@ -2,12 +2,12 @@
 
 import mongoose from 'mongoose'
 import { connectToDB } from '../mongoose'
-import Category, { ICategory } from '../models/category'
+import Category, { type ICategory } from '../models/category'
 import ToDo from '../models/todo'
 
-export async function getCategories(id: string) {
+export async function getCategories (id: string): Promise<ICategory[] | null> {
 	try {
-		connectToDB()
+		await connectToDB()
 		const categories: ICategory[] = await Category.find({
 			userId: new mongoose.Types.ObjectId(id)
 		})
@@ -35,9 +35,9 @@ export async function getCategories(id: string) {
 		throw new Error(`Failed to get categories: ${error.message}`)
 	}
 }
-export async function getCategoryCount(id: string) {
+export async function getCategoryCount (id: string): Promise<number> {
 	try {
-		connectToDB()
+		await connectToDB()
 		const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000) // Calculate the date 1 hour ago
 		return await ToDo.find({
 			categoryId: new mongoose.Types.ObjectId(id),
@@ -50,9 +50,9 @@ export async function getCategoryCount(id: string) {
 		throw new Error(`Failed to get category count: ${error.message}`)
 	}
 }
-export async function addCategory(categoryData: ICategory) {
+export async function addCategory (categoryData: ICategory): Promise<ICategory | null> {
 	try {
-		connectToDB()
+		await connectToDB()
 
 		return await Category.findOneAndUpdate(
 			{
@@ -69,9 +69,9 @@ export async function addCategory(categoryData: ICategory) {
 		throw new Error(`Failed to add categories: ${error.message}`)
 	}
 }
-export async function deleteCategory(categoryData: ICategory) {
+export async function deleteCategory (categoryData: ICategory): Promise<any> {
 	try {
-		connectToDB()
+		await connectToDB()
 
 		return await Category.deleteOne({
 			_id: new mongoose.Types.ObjectId(categoryData._id)
