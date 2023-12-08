@@ -4,17 +4,13 @@ import { MainContent } from './MainContent'
 import { Toast } from './Toast'
 import { type ICategory } from '@/lib/models/category'
 import { type IIcon } from '@/lib/models/icon'
-import { type IToDo } from '@/lib/models/todo'
 
 export default function Content (props: {
 	categories: ICategory[]
 	icons: IIcon[]
 	userId: string
 	children: React.ReactNode
-}) {
-	const pullToDo = (data: IToDo) => {
-
-	}
+}): JSX.Element {
 	return (
 		<div>
 			<Topbar
@@ -25,9 +21,9 @@ export default function Content (props: {
 			<MainContent
 				categories={props.categories}
 				icons={props.icons}
-				userId={props.userId}
-				children={props.children}
-			/>
+				userId={props.userId}>
+				{props.children}
+			</MainContent>
 			<Toast />
 		</div>
 	)

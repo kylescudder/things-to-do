@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 let isConnected = false // Variable to track the connection status
 
-export const connectToDB = async () => {
+export const connectToDB = async (): Promise<void> => {
 	// Set strict query mode for Mongoose to prevent unknown field queries.
 	mongoose.set('strictQuery', true)
 

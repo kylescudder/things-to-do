@@ -19,26 +19,27 @@ export default function Topbar (props: {
 	categories: ICategory[] | null
 	icons: IIcon[]
 	userId: string
-}) {
-	const [categoryList, setCategoryList] = useState<ICategory[] | null>(
-		props.categories
+}): JSX.Element {
+	const [categoryList, setCategoryList] = useState<ICategory[]>(
+		props.categories ?? []
 	)
 	const [open, setOpen] = useState<boolean>(false)
-	const [rightSideBarOpen, setRightSideBarOpen] = useState<boolean>(false)
+	// const [rightSideBarOpen, setRightSideBarOpen] = useState<boolean>(false)
+
 	const router = useRouter()
 
-	const pullRightSideBarOpen = (data: boolean) => {
+	const pullRightSideBarOpen = (data: boolean): void => {
 		const state = {
 			isOpen: data
 		}
 		isMenuOpen(state)
 		router.refresh()
 	}
-	const pullData = (data: ICategory[]) => {
+	const pullData = (data: ICategory[]): void => {
 
 	}
-	const pullToDo = (data: IToDo) => {
-		const updatedCategoryList = categoryList!.map((category) => {
+	const pullToDo = (data: IToDo): void => {
+		const updatedCategoryList = categoryList.map((category) => {
 			if (category._id === data.categoryId) {
 				category.todoCount++
 			}
@@ -46,9 +47,9 @@ export default function Topbar (props: {
 		})
 		setCategoryList(updatedCategoryList)
 	}
-	var isMenuOpen = function (state: {
+	const isMenuOpen = function (state: {
 		isOpen: boolean | ((prevState: boolean) => boolean)
-	}) {
+	}): any {
 		setOpen(state.isOpen)
 	}
 	return (

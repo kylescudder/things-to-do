@@ -9,10 +9,10 @@ import Icon from '../shared/Icon'
 export default function ToDo (props: { todoItem: IToDo, func: (todo: IToDo) => void }): JSX.Element {
 	const [data, setData] = useState<IToDo>(props.todoItem)
 
-	const handleTodoClick = (_event: React.MouseEvent<HTMLElement>): void => {
+	const handleTodoClick = async (_event: React.MouseEvent<HTMLElement>): Promise<void> => {
 		const updatedToDo: IToDo = { ...data, completed: !data.completed }
-		clickToDo(updatedToDo)
-		successToast(updatedToDo)
+		await clickToDo(updatedToDo)
+		await successToast(updatedToDo)
 		setData(updatedToDo)
 		props.func(updatedToDo)
 	}

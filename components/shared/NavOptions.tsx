@@ -13,8 +13,8 @@ export default function NavOptions (props: {
 	categories: ICategory[] | null
 	func: (categories: ICategory[]) => void
 }): JSX.Element {
-	const [categoryList, setCategoryList] = useState<ICategory[] | null>(
-		props.categories
+	const [categoryList, setCategoryList] = useState<ICategory[]>(
+		props.categories ?? []
 	)
 	const pathname = usePathname()
 	const router = useRouter()
@@ -34,7 +34,7 @@ export default function NavOptions (props: {
 				/>
 				<p className="text-dark-2 dark:text-light-1 flex relative">Home</p>
 			</a>
-			{categoryList!.map((category) => {
+			{categoryList.map((category) => {
 				const isActive =
           (pathname.includes(category._id.toString().toLowerCase()) &&
             category._id.toString().toLowerCase().length > 1) ||
@@ -46,13 +46,13 @@ export default function NavOptions (props: {
 						text={`${category.text} (${category.todoCount})`}
 						icon={category.icon}
 						holdText={`Deleting ${category.text}...`}
-						onHoldStart={() => {
-							const updatedArray = categoryList!.filter(
+						onHoldStart={async () => {
+							const updatedArray = categoryList.filter(
 								(item) => item._id !== category._id
 							)
 							setCategoryList(updatedArray)
-							deleteToast(category)
-							deleteCategory(category)
+							await deleteToast(category)
+							await deleteCategory(category)
 							props.func(updatedArray)
 						}}
 						onHoldEnd={() => {

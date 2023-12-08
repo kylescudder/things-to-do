@@ -17,6 +17,6 @@ const iconSchema = new mongoose.Schema<IconClass>({
 	text: { type: String }
 })
 
-const Icon = mongoose.models.Icon !== null || mongoose.model('Icon', iconSchema)
+const Icon = mongoose.models.Icon || mongoose.model('Icon', iconSchema)
 
 export default Icon

@@ -2,8 +2,6 @@
 
 import React, { useState } from 'react'
 import { useForm } from '@mantine/form'
-
-import { useRouter } from 'next/navigation'
 import dayjs from 'dayjs'
 import { type IToDo } from '@/lib/models/todo'
 import { type ICategory } from '@/lib/models/category'
@@ -13,14 +11,19 @@ import { Button, Select, TextInput } from '@mantine/core'
 import { DateTimePicker } from '@mantine/dates'
 import { type option } from '@/lib/models/select-options'
 
-const AddToDo = (props: { categories: ICategory[] | null, todoAdded: (todo: IToDo) => void }) => {
-	const router = useRouter()
+const AddToDo = (
+	props: {
+		categories: ICategory[] | null
+		todoAdded: (todo: IToDo) => void
+	}
+): JSX.Element => {
 	const [targetDate] = useState(new Date())
 
-	if (props.categories !== null) {
-		const options: option[] = props.categories.map((category: ICategory | null) => ({
-			value: category!._id,
-			label: category!.text
+	let options: option[] = []
+	if (props.categories) {
+		options = props.categories.map((category: ICategory | null) => ({
+			value: category?._id ?? '',
+			label: category?.text ?? ''
 		}))
 	}
 
@@ -38,7 +41,7 @@ const AddToDo = (props: { categories: ICategory[] | null, todoAdded: (todo: IToD
 		categoryId: string
 		completed: boolean
 	}
-	const onSubmit = async (values: FormUser) => {
+	const onSubmit = async (values: FormUser): Promise<void> => {
 		const payload: IToDo = {
 			_id: '',
 			text: values.text,
@@ -50,12 +53,14 @@ const AddToDo = (props: { categories: ICategory[] | null, todoAdded: (todo: IToD
 		}
 
 		const newToDo: IToDo | null = await addToDo(payload)
-		props.todoAdded(newToDo!)
+		if (newToDo) {
+			props.todoAdded(newToDo)
+		}
 	}
 
-	const pullData = (data: ICategory) => {
-		setCategoryId(data._id)
-	}
+	// const pullData = (data: ICategory): void => {
+	//	setCategoryId(data._id)
+	// }
 	return (
 		<form
 			onSubmit={form.onSubmit(async (values) => {

@@ -1,9 +1,9 @@
 'use server'
 
 import { connectToDB } from '../mongoose'
-import Icon from '../models/icon'
+import Icon, { type IIcon } from '../models/icon'
 
-export async function getIcons () {
+export async function getIcons (): Promise<IIcon[]> {
 	try {
 		await connectToDB()
 

@@ -1,11 +1,12 @@
 'use server'
 
 // app/page.tsx
+import React from 'react'
 import { UserButton, currentUser } from '@clerk/nextjs'
 import { redirect } from 'next/navigation'
 import { getUserInfo } from '@/lib/actions/user.actions'
 
-async function Page () {
+async function Page (): Promise<JSX.Element | null> {
 	const user = await currentUser()
 	if (!user) return null
 

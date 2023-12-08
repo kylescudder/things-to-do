@@ -17,7 +17,7 @@ export default function Icon (props: IconProps): JSX.Element {
 		import('@tabler/icons-react')
 			.then((module) => {
 				const iconComponent = module[props.name] as React.ElementType
-				if (iconComponent !== null) {
+				if (iconComponent) {
 					setIconComponent(iconComponent)
 				}
 			})
@@ -25,7 +25,7 @@ export default function Icon (props: IconProps): JSX.Element {
 				console.error('Error loading icon:', error)
 			})
 	}, [props.name])
-	if (props.name === null) {
+	if (!props.name) {
 		return (
 			<IconCategory
 				className={`text-dark-2 dark:text-light-1 ${
@@ -36,7 +36,7 @@ export default function Icon (props: IconProps): JSX.Element {
 			/>
 		)
 	}
-	if (IconComponent === null) {
+	if (!IconComponent) {
 		return (
 			<>
 				<div

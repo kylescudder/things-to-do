@@ -16,18 +16,20 @@ export default function RightSidebar (props: {
 	menuState: boolean
 	pullRightSideBarOpen: (open: boolean) => void
 }): JSX.Element {
-	const [categoryList, setCategoryList] = useState<ICategory[] | null>(
-		props.categories
+	const [categoryList, setCategoryList] = useState<ICategory[]>(
+		props.categories ?? []
 	)
 	const [open, setOpen] = useState<boolean>(props.menuState)
 
 	useEffect(() => {
-		props.func(categoryList!)
-		setOpen(props.menuState)
+		if (categoryList) {
+			props.func(categoryList)
+			setOpen(props.menuState)
+		}
 	}, [categoryList, props.menuState])
 
 	const pullData = (data: ICategory): void => {
-		const newCatList = [...categoryList!, data]
+		const newCatList = [...categoryList, data]
 		newCatList.sort((a, b) => a.text.localeCompare(b.text))
 		setCategoryList(newCatList)
 		props.pullRightSideBarOpen(false)

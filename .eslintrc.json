@@ -43,17 +43,13 @@
         "trailingUnderscore": "allow"
       }
     ],
-    "no-await-in-loop": "off"
+    "no-await-in-loop": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        "checksVoidReturn": false
+      }
+    ]
   }
 }
-
-//{
-//  "extends": [
-//    "airbnb-base",
-//    "plugin:import/errors",
-//    "plugin:import/warnings",
-//    "plugin:import/typescript"
-//  ],
-//  "parser": "@typescript-eslint/parser",
-//  "plugins": ["@typescript-eslint"],
-//}

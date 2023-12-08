@@ -9,11 +9,11 @@ export default function LeftSidebar (props: {
 	categories: ICategory[] | null
 	func: (categories: ICategory[]) => void
 }): JSX.Element {
-	const [categoryList, setCategoryList] = useState<ICategory[] | null>(
-		props.categories
+	const [categoryList, setCategoryList] = useState<ICategory[]>(
+		props.categories ?? []
 	)
 	useEffect(() => {
-		setCategoryList(props.categories)
+		setCategoryList(props.categories ?? [])
 	}, [props.categories])
 
 	const pullData = (data: ICategory[]): void => {

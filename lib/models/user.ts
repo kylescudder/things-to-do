@@ -39,6 +39,6 @@ const userSchema = new mongoose.Schema<UserClass>({
 	onboarded: { type: Boolean, default: false }
 })
 
-const User = mongoose.models.User !== null || mongoose.model('User', userSchema)
+const User = mongoose.models.User || mongoose.model('User', userSchema)
 
 export default User

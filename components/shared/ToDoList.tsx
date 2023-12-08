@@ -11,7 +11,7 @@ export default function ToDoList (props: { todos: IToDo[] | null }): JSX.Element
 		function fetchTodos (): void {
 			try {
 				const fetchedTodos: IToDo[] | null = props.todos
-				if (fetchedTodos !== null) {
+				if (fetchedTodos) {
 					setToDoList(fetchedTodos)
 				}
 			} catch (error) {
@@ -41,7 +41,7 @@ export default function ToDoList (props: { todos: IToDo[] | null }): JSX.Element
 		})
 	}
 
-	if (todoList === null) {
+	if (!todoList) {
 		return <p>Loading...</p>
 	}
 	return (

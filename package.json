@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint --fix . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint --fix . --ext .ts,.tsx"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.26.2",

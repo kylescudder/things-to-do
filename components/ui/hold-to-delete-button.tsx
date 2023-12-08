@@ -54,10 +54,10 @@ class HoldToDeleteComponent extends Component<Props, State> {
 		}, 1000)
 
 		this.setState({ holding: true })
-		setTimeout(() => {
-			if (this.state.holding && Date.now() - this.holdStartTime! >= 1000) {
+		setTimeout(async () => {
+			if (this.state.holding && Date.now() - (this.holdStartTime ?? Date.now()) >= 1000) {
 				if (this.props.isActive) {
-					warningToast('You can\'t delete the category you are currently viewing!')
+					await warningToast('You can\'t delete the category you are currently viewing!')
 				} else {
 					this.setState({ held: true })
 				}
@@ -66,12 +66,12 @@ class HoldToDeleteComponent extends Component<Props, State> {
 	}
 
 	handleHoldEnd = (): void => {
-		if (this.timer !== null) {
+		if (this.timer) {
 			clearInterval(this.timer)
 			this.timer = null
 		}
 
-		if (this.holdStartTime !== null && Date.now() - this.holdStartTime < 1000) {
+		if (this.holdStartTime && Date.now() - this.holdStartTime < 1000) {
 			this.setState({ held: false })
 			this.props.onHoldEnd()
 		}
@@ -81,7 +81,7 @@ class HoldToDeleteComponent extends Component<Props, State> {
 		this.setState({ holding: false, held: false, timerProgress: 0 })
 	}
 
-	render () {
+	render (): JSX.Element {
 		const { holding, held, timerProgress } = this.state
 		const { text, holdText, icon, isActive } = this.props
 

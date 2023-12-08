@@ -23,6 +23,6 @@ const categorySchema = new mongoose.Schema<CategoryClass>({
 	todoCount: { type: Number }
 })
 
-const Category = mongoose.models.Category !== null || mongoose.model('Category', categorySchema)
+const Category = mongoose.models.Category || mongoose.model('Category', categorySchema)
 
 export default Category

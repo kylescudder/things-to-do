@@ -8,7 +8,12 @@ import { type ICategory } from '@/lib/models/category'
 import { Button, Select, TextInput } from '@mantine/core'
 import { type option } from '@/lib/models/select-options'
 
-const AddCategory = (props: { icons: IIcon[], func: (categories: ICategory) => void, userId: string }) => {
+const AddCategory = (
+	props: {
+		icons: IIcon[]
+		func: (categories: ICategory) => void
+		userId: string
+	}): JSX.Element => {
 	const [icon] = useState('')
 
 	const options: option[] = props.icons.map((icon: IIcon) => ({
@@ -35,7 +40,7 @@ const AddCategory = (props: { icons: IIcon[], func: (categories: ICategory) => v
 			todoCount: 0
 		}
 		const newCat = await addCategory(payload)
-		if (newCat !== null) {
+		if (newCat) {
 			props.func(newCat)
 		}
 	}

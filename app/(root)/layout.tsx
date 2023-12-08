@@ -82,7 +82,7 @@ export const metadata: Metadata = {
 export default async function RootLayout ({ children }: { children: React.ReactNode }):
 Promise<React.JSX.Element | null> {
 	const user = await currentUser()
-	if (user === null) return null
+	if (!user) return null
 
 	const userInfo: IUser | null = await getUserInfo(user.id)
 	if (!userInfo?.onboarded) redirect('/onboarding')
@@ -99,8 +99,9 @@ Promise<React.JSX.Element | null> {
 			<html lang="en">
 				<body>
 					<Topbar icons={icons} userId={userInfo._id} categories={categories} />
-					<MainContent categories={categories} icons={icons} userId={userInfo._id}
-						children={children} />
+					<MainContent categories={categories} icons={icons} userId={userInfo._id}>
+						{children}
+					</MainContent>
 					<Toast />
 				</body>
 			</html>

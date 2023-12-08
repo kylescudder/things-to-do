@@ -8,21 +8,21 @@ import { getUserInfo } from '@/lib/actions/user.actions'
 
 export default async function page (): Promise<JSX.Element | null> {
 	const user = await currentUser()
-	if (user === null) return null
+	if (!user) return null
 
 	const userInfo: IUser | null = await getUserInfo(user.id)
-	if (userInfo?.onboarded !== null) redirect('/')
+	if (userInfo?.onboarded) redirect('/')
 
 	const userData: IUser = {
 		clerkId: user.id,
-		_id: userInfo?._id,
-		username: userInfo !== null
+		_id: userInfo?._id ? userInfo?._id : '',
+		username: userInfo
 			? userInfo?.username
 			: user.emailAddresses[0].emailAddress,
-		name: userInfo?.name !== null ? userInfo?.name : user.firstName ?? '',
-		bio: userInfo?.bio !== null ? userInfo?.bio : '',
-		image: userInfo !== null ? userInfo.image : user?.imageUrl,
-		onboarded: userInfo !== null ? userInfo?.onboarded : false
+		name: userInfo?.name ? userInfo?.name : user.firstName ?? '',
+		bio: userInfo?.bio ? userInfo?.bio : '',
+		image: userInfo ? userInfo.image : user?.imageUrl,
+		onboarded: userInfo ? userInfo?.onboarded : false
 	}
 	return (
 		<main className="mx-auto flex max-w-3xl flex-col justify-start px-10 py-20">

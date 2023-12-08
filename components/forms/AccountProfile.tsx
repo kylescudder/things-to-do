@@ -12,15 +12,15 @@ interface Props {
 	user: IUser
 	btnTitle: string
 }
-const AccountProfile = ({ user, btnTitle }: Props) => {
+const AccountProfile = ({ user, btnTitle }: Props): JSX.Element => {
 	const router = useRouter()
 	const pathname = usePathname()
 	const form = useForm({
 		initialValues: {
-			image: user?.image !== null ? user.image : '',
-			username: user?.username !== null ? user.username : '',
-			name: user?.name !== null ? user.name : '',
-			bio: user?.bio !== null ? user.bio : ''
+			image: user?.image ? user.image : '',
+			username: user?.username ? user.username : '',
+			name: user?.name ? user.name : '',
+			bio: user?.bio ? user.bio : ''
 		}
 	})
 	const [imageString, setImageString] = useState<string>(form.values.image)
@@ -31,7 +31,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
 		name: string
 		bio: string
 	}
-	const onSubmit = async (values: formUser) => {
+	const onSubmit = async (values: formUser): Promise<void> => {
 		const payload: IUser = {
 			_id: '',
 			username: values.username,
@@ -49,14 +49,14 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
 		}
 	}
 
-	const handleImage = (e: File) => {
+	const handleImage = (e: File): void => {
 		const fileReader = new FileReader()
 		if (!e.type.includes('image')) return
 
 		fileReader.onload = () => {
 			const base64String = fileReader.result
-			setImageString(base64String?.toString() || '')
-			form.values.image = base64String?.toString() || ''
+			setImageString(base64String?.toString() ?? '')
+			form.values.image = base64String?.toString() ?? ''
 		}
 
 		fileReader.readAsDataURL(e)
@@ -97,7 +97,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
 				size="md"
 				{...form.getInputProps('image')}
 				onChange={(e) => {
-					if (e !== null) {
+					if (e) {
 						handleImage(e)
 					}
 				}}

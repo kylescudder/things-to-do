@@ -29,6 +29,6 @@ const todoSchema = new mongoose.Schema<ToDoClass>({
 	categoryId: { type: mongoose.Schema.Types.ObjectId }
 })
 
-const ToDo = mongoose.models.ToDo !== null || mongoose.model('ToDo', todoSchema)
+const ToDo = mongoose.models.ToDo || mongoose.model('ToDo', todoSchema)
 
 export default ToDo

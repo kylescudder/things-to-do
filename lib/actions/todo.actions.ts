@@ -28,7 +28,7 @@ export async function getToDos (id: string): Promise<IToDo[] | null> {
 
 		if (todos !== undefined) {
 			todos.forEach((todo) => {
-				if (todo.targetDate !== null) {
+				if (todo.targetDate) {
 					todo.targetDateString = dayjs(todo.targetDate).format(
 						'DD/MM/YYYY HH:mm'
 					)
@@ -74,7 +74,7 @@ export const addToDo = async (todoItem: IToDo): Promise<IToDo | null> => {
 			todoItem._id = newId.toString()
 		}
 
-		return await ToDo.findOneAndUpdate(
+		const todo: IToDo = await ToDo.findOneAndUpdate(
 			{
 				_id: new mongoose.Types.ObjectId(todoItem._id)
 			},
@@ -87,6 +87,8 @@ export const addToDo = async (todoItem: IToDo): Promise<IToDo | null> => {
 			},
 			{ upsert: true, new: true }
 		)
+
+		return todo
 	} catch (error: any) {
 		throw new Error(`Failed to add todo: ${error.message}`)
 	}

@@ -14,19 +14,19 @@ export const MainContent = (props: {
 	icons: IIcon[]
 	userId: string
 	children: ReactNode
-}) => {
-	const [categoryList, setCategoryList] = useState<ICategory[] | null>(
-		props.categories
+}): JSX.Element => {
+	const [categoryList, setCategoryList] = useState<ICategory[]>(
+		props.categories ?? []
 	)
-	useEffect(() => {}, categoryList!)
+	useEffect(() => {}, categoryList)
 
-	const pullData = async (data: ICategory[]) => {
+	const pullData = async (data: ICategory[]): Promise<void> => {
 		const newCatList = [...data]
 		newCatList.sort((a, b) => a.text.localeCompare(b.text))
 		setCategoryList(newCatList)
 	}
-	const pullToDo = (data: IToDo) => {
-		const updatedCategoryList = categoryList!.map((category) => {
+	const pullToDo = (data: IToDo): void => {
+		const updatedCategoryList = categoryList?.map((category) => {
 			if (category._id === data.categoryId) {
 				category.todoCount += 1
 			}
@@ -35,7 +35,7 @@ export const MainContent = (props: {
 
 		setCategoryList(updatedCategoryList)
 	}
-	const pullRightSideBarOpen = () => {}
+	const pullRightSideBarOpen = (): void => {}
 	return (
 		<CustomThemeProvider>
 			<main className="flex flex-row">
