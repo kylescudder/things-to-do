@@ -7,6 +7,7 @@ import { addCategory } from '@/lib/actions/category.actions'
 import { type ICategory } from '@/lib/models/category'
 import { Button, Select, TextInput } from '@mantine/core'
 import { type option } from '@/lib/models/select-options'
+import { categorySuccessToast } from '@/lib/actions/toast.actions'
 
 const AddCategory = (
 	props: {
@@ -42,6 +43,7 @@ const AddCategory = (
 		const newCat = await addCategory(payload)
 		if (newCat) {
 			props.addNewCategory(newCat)
+			await categorySuccessToast(newCat)
 		}
 	}
 	return (

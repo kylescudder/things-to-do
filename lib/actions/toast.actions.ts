@@ -4,7 +4,7 @@ import { toast } from 'react-toastify'
 import { type IToDo } from '../models/todo'
 import { type ICategory } from '../models/category'
 
-export const successToast = async (todoItem: IToDo): Promise<void> => {
+export const todoSuccessToast = async (todoItem: IToDo): Promise<void> => {
 	let text: string
 	if (todoItem.completed) {
 		text = `🥳🎉 Completed ${todoItem.text}`
@@ -12,6 +12,18 @@ export const successToast = async (todoItem: IToDo): Promise<void> => {
 		text = `😥🤦‍♀️ Uncompleted ${todoItem.text}`
 	}
 	toast.success(`${text}`, {
+		position: 'top-right',
+		autoClose: 5000,
+		hideProgressBar: false,
+		closeOnClick: true,
+		pauseOnHover: true,
+		draggable: true,
+		progress: undefined,
+		theme: 'dark'
+	})
+}
+export const categorySuccessToast = async (categoryItem: ICategory): Promise<void> => {
+	toast.success(`Category ${categoryItem.text} added! ✨😃`, {
 		position: 'top-right',
 		autoClose: 5000,
 		hideProgressBar: false,

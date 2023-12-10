@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { type IToDo } from '@/lib/models/todo'
 import { clickToDo } from '@/lib/actions/todo.actions'
-import { successToast } from '@/lib/actions/toast.actions'
+import { todoSuccessToast } from '@/lib/actions/toast.actions'
 import Icon from '../shared/Icon'
 
 export default function ToDo (props: { todoItem: IToDo, func: (todo: IToDo) => void }): JSX.Element {
@@ -12,7 +12,7 @@ export default function ToDo (props: { todoItem: IToDo, func: (todo: IToDo) => v
 	const handleTodoClick = async (_event: React.MouseEvent<HTMLElement>): Promise<void> => {
 		const updatedToDo: IToDo = { ...data, completed: !data.completed }
 		await clickToDo(updatedToDo)
-		await successToast(updatedToDo)
+		await todoSuccessToast(updatedToDo)
 		setData(updatedToDo)
 		props.func(updatedToDo)
 	}
