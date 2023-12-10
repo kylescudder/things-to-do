@@ -23,8 +23,8 @@ export default function Topbar (props: {
 	const [categoryList, setCategoryList] = useState<ICategory[]>(
 		props.categories ?? []
 	)
-	const [open, setOpen] = useState<boolean>(false)
-	// const [rightSideBarOpen, setRightSideBarOpen] = useState<boolean>(false)
+	const [rightSideOpen, setRightSideOpen] = useState<boolean>(false)
+	const [leftSideOpen, setLeftSideOpen] = useState<boolean>(false)
 
 	const router = useRouter()
 
@@ -32,9 +32,17 @@ export default function Topbar (props: {
 		const state = {
 			isOpen: data
 		}
-		isMenuOpen(state)
+		isRightMenuOpen(state)
 		router.refresh()
 	}
+	const pullLeftSideBarOpen = (data: boolean): void => {
+		const state = {
+			isOpen: data
+		}
+		isLeftMenuOpen(state)
+		router.refresh()
+	}
+
 	const pullData = (data: ICategory[]): void => {
 
 	}
@@ -47,11 +55,18 @@ export default function Topbar (props: {
 		})
 		setCategoryList(updatedCategoryList)
 	}
-	const isMenuOpen = function (state: {
+	const isRightMenuOpen = function (state: {
 		isOpen: boolean | ((prevState: boolean) => boolean)
 	}): any {
-		setOpen(state.isOpen)
+		setRightSideOpen(state.isOpen)
 	}
+
+	const isLeftMenuOpen = function (state: {
+		isOpen: boolean | ((prevState: boolean) => boolean)
+	}): any {
+		setLeftSideOpen(state.isOpen)
+	}
+
 	return (
 		<CustomThemeProvider>
 			<nav className="topbar">
@@ -75,6 +90,8 @@ export default function Topbar (props: {
 					</p>
 				</Link>
 				<Menu
+					isOpen={leftSideOpen}
+					onStateChange={isLeftMenuOpen}
 					burgerButtonClassName={'text-dark-1 dark:text-light-1'}
 					customBurgerIcon={
 						<IconListCheck
@@ -90,13 +107,14 @@ export default function Topbar (props: {
 						func={pullData}
 						position="leftsidebar"
 						categories={categoryList}
+						pullLeftSideBarOpen={pullLeftSideBarOpen}
 					/>
 				</Menu>
 				<Menu
-					isOpen={open}
+					isOpen={rightSideOpen}
 					right
 					className="addToDo"
-					onStateChange={isMenuOpen}
+					onStateChange={isRightMenuOpen}
 					burgerButtonClassName={'text-dark-1 dark:text-light-1 ml-10'}
 					customBurgerIcon={
 						<IconFilePlus
@@ -109,7 +127,7 @@ export default function Topbar (props: {
 					}
 				>
 					<RightSidebar
-						menuState={open}
+						menuState={rightSideOpen}
 						categories={categoryList}
 						icons={props.icons}
 						userId={props.userId}

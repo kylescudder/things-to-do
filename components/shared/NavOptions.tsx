@@ -12,6 +12,7 @@ export default function NavOptions (props: {
 	position: string
 	categories: ICategory[] | null
 	func: (categories: ICategory[]) => void
+	pullLeftSideBarOpen: (open: boolean) => void
 }): JSX.Element {
 	const [categoryList, setCategoryList] = useState<ICategory[]>(
 		props.categories ?? []
@@ -56,6 +57,7 @@ export default function NavOptions (props: {
 							props.func(updatedArray)
 						}}
 						onHoldEnd={() => {
+							props.pullLeftSideBarOpen(false)
 							router.push(`/list/${category._id}`)
 						}}
 					></HoldToDeleteComponent>

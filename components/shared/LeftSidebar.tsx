@@ -32,6 +32,7 @@ export default function LeftSidebar (props: {
 					func={pullData}
 					position="leftsidebar"
 					categories={categoryList}
+					pullLeftSideBarOpen={() => { console.log('closed') }}
 				/>
 			</div>
 			<div className="mt-auto px-6 py-3 shadow-inner">
