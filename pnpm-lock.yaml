@@ -19,7 +19,7 @@ dependencies:
     version: 5.0.8
   '@hookform/resolvers':
     specifier: ^3.3.2
-    version: 3.3.2(react-hook-form@7.48.2)
+    version: 3.3.2(react-hook-form@7.49.0)
   '@mantine/core':
     specifier: ^6.0.20
     version: 6.0.21(@emotion/react@11.11.1)(@mantine/hooks@6.0.21)(@types/react@18.2.42)(react-dom@18.2.0)(react@18.2.0)
@@ -102,8 +102,8 @@ dependencies:
     specifier: ^14.2.3
     version: 14.2.3(react@18.2.0)
   react-hook-form:
-    specifier: ^7.48.2
-    version: 7.48.2(react@18.2.0)
+    specifier: ^7.49.0
+    version: 7.49.0(react@18.2.0)
   react-select:
     specifier: ^5.8.0
     version: 5.8.0(@types/react@18.2.42)(react-dom@18.2.0)(react@18.2.0)
@@ -1657,12 +1657,12 @@ packages:
     resolution: {integrity: sha512-lZY64hVXrnkt/+5jRfm0uMiRv+lmrIdnATAnDj1SPqebmI2UDf3KC9p4rOkIYsBOjOsD6seJ82GIQE067DSvWw==}
     dev: false
 
-  /@hookform/resolvers@3.3.2(react-hook-form@7.48.2):
+  /@hookform/resolvers@3.3.2(react-hook-form@7.49.0):
     resolution: {integrity: sha512-Tw+GGPnBp+5DOsSg4ek3LCPgkBOuOgS5DsDV7qsWNH9LZc433kgsWICjlsh2J9p04H2K66hsXPPb9qn9ILdUtA==}
     peerDependencies:
       react-hook-form: ^7.0.0
     dependencies:
-      react-hook-form: 7.48.2(react@18.2.0)
+      react-hook-form: 7.49.0(react@18.2.0)
     dev: false
 
   /@humanwhocodes/config-array@0.11.13:
@@ -5782,9 +5782,9 @@ packages:
       react: 18.2.0
     dev: false
 
-  /react-hook-form@7.48.2(react@18.2.0):
-    resolution: {integrity: sha512-H0T2InFQb1hX7qKtDIZmvpU1Xfn/bdahWBN1fH19gSe4bBEqTfmlr7H3XWTaVtiK4/tpPaI1F3355GPMZYge+A==}
-    engines: {node: '>=12.22.0'}
+  /react-hook-form@7.49.0(react@18.2.0):
+    resolution: {integrity: sha512-gf4qyY4WiqK2hP/E45UUT6wt3Khl49pleEVcIzxhLBrD6m+GMWtLRk0vMrRv45D1ZH8PnpXFwRPv0Pewske2jw==}
+    engines: {node: '>=18', pnpm: '8'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
     dependencies:
