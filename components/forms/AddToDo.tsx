@@ -9,6 +9,7 @@ import { addToDo } from '@/lib/actions/todo.actions'
 import { Button, Select, TextInput } from '@mantine/core'
 import { DateTimePicker } from '@mantine/dates'
 import { type option } from '@/lib/models/select-options'
+import { useRouter } from 'next/navigation'
 
 const AddToDo = (
 	props: {
@@ -16,6 +17,7 @@ const AddToDo = (
 		todoAdded: (todo: IToDo) => void
 	}
 ): JSX.Element => {
+	const router = useRouter()
 	const [targetDate] = useState(new Date())
 
 	let options: option[] = []
@@ -54,6 +56,7 @@ const AddToDo = (
 		const newToDo: IToDo | null = await addToDo(payload)
 		if (newToDo) {
 			props.todoAdded(newToDo)
+			router.push(`/list/${newToDo.categoryId}`)
 		}
 	}
 
