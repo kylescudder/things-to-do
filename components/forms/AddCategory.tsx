@@ -11,8 +11,8 @@ import { type option } from '@/lib/models/select-options'
 const AddCategory = (
 	props: {
 		icons: IIcon[]
-		func: (categories: ICategory) => void
 		userId: string
+		addNewCategory: (categories: ICategory) => void
 	}): JSX.Element => {
 	const [icon] = useState('')
 
@@ -41,7 +41,7 @@ const AddCategory = (
 		}
 		const newCat = await addCategory(payload)
 		if (newCat) {
-			props.func(newCat)
+			props.addNewCategory(newCat)
 		}
 	}
 	return (
