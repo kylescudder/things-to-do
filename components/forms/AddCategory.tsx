@@ -15,10 +15,8 @@ const AddCategory = (
 		userId: string
 		addNewCategory: (categories: ICategory) => void
 	}): JSX.Element => {
-	const [icon] = useState('')
-
 	const options: option[] = props.icons.map((icon: IIcon) => ({
-		value: icon._id,
+		value: icon.icon,
 		label: icon.text
 	}))
 
@@ -36,7 +34,7 @@ const AddCategory = (
 		const payload: ICategory = {
 			_id: '',
 			text: values.text,
-			icon,
+			icon: values.icon,
 			userId: props.userId,
 			todoCount: 0
 		}
@@ -69,7 +67,7 @@ const AddCategory = (
 				label="Icon"
 				placeholder="Pick one"
 				data={options}
-				{...form.getInputProps('userID')}
+				{...form.getInputProps('icon')}
 			/>
 			<Button className="bg-primary-500" type="submit">
 				Add
