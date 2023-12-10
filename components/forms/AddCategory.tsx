@@ -1,7 +1,7 @@
 'use client'
 
 import { useForm } from '@mantine/form'
-import React, { useState } from 'react'
+import React from 'react'
 import { type IIcon } from '@/lib/models/icon'
 import { addCategory } from '@/lib/actions/category.actions'
 import { type ICategory } from '@/lib/models/category'
