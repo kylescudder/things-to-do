@@ -35,7 +35,11 @@ export const MainContent = (props: {
 
 		setCategoryList(updatedCategoryList)
 	}
-	const pullRightSideBarOpen = (): void => {}
+	const pullRightSideBarOpen = (): void => { }
+
+	const addNewCategory = (data: ICategory): void => {
+		setCategoryList([...categoryList, data])
+	}
 	return (
 		<CustomThemeProvider>
 			<main className="flex flex-row">
@@ -53,6 +57,7 @@ export const MainContent = (props: {
 					userId={props.userId}
 					func={pullData}
 					newToDo={pullToDo}
+					addNewCategory={(data: ICategory) => { addNewCategory(data) }}
 					pullRightSideBarOpen={pullRightSideBarOpen}
 				/>
 			</main>

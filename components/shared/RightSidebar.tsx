@@ -14,6 +14,7 @@ export default function RightSidebar (props: {
 	func: (categories: ICategory[]) => void
 	newToDo: (todo: IToDo) => void
 	menuState: boolean
+	addNewCategory: (categories: ICategory) => void
 	pullRightSideBarOpen: (open: boolean) => void
 }): JSX.Element {
 	const [categoryList, setCategoryList] = useState<ICategory[]>(
@@ -32,7 +33,7 @@ export default function RightSidebar (props: {
 		const newCatList = [...categoryList, data]
 		newCatList.sort((a, b) => a.text.localeCompare(b.text))
 		setCategoryList(newCatList)
-		props.pullRightSideBarOpen(false)
+		props.addNewCategory(data)
 	}
 	const todoAdded = (data: IToDo): void => {
 		props.newToDo(data)

@@ -67,6 +67,13 @@ export default function Topbar (props: {
 		setLeftSideOpen(state.isOpen)
 	}
 
+	const addNewCategory = (category: ICategory): void => {
+		category.todoCount = 0
+		const newCategoryList = [...categoryList, category]
+		newCategoryList.sort((a, b) => a.text.localeCompare(b.text))
+		setCategoryList(newCategoryList)
+	}
+
 	return (
 		<CustomThemeProvider>
 			<nav className="topbar">
@@ -133,6 +140,7 @@ export default function Topbar (props: {
 						userId={props.userId}
 						func={pullData}
 						newToDo={pullToDo}
+						addNewCategory={(data: ICategory) => { addNewCategory(data) }}
 						pullRightSideBarOpen={pullRightSideBarOpen}
 					/>
 				</Menu>

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import Icon from './Icon'
 import { type ICategory } from '@/lib/models/category'
@@ -17,6 +17,11 @@ export default function NavOptions (props: {
 	const [categoryList, setCategoryList] = useState<ICategory[]>(
 		props.categories ?? []
 	)
+	// Update categoryList whenever props.categories changes
+	useEffect(() => {
+		setCategoryList(props.categories ?? [])
+	}, [props.categories])
+
 	const pathname = usePathname()
 	const router = useRouter()
 
