@@ -48,8 +48,8 @@ dependencies:
     specifier: ^7.86.0
     version: 7.86.0(next@14.0.4)(react@18.2.0)(webpack@5.89.0)
   '@tabler/icons-react':
-    specifier: ^2.43.0
-    version: 2.43.0(react@18.2.0)
+    specifier: ^2.44.0
+    version: 2.44.0(react@18.2.0)
   '@types/node':
     specifier: 20.10.4
     version: 20.10.4
@@ -2441,18 +2441,18 @@ packages:
       tslib: 2.6.1
     dev: false
 
-  /@tabler/icons-react@2.43.0(react@18.2.0):
-    resolution: {integrity: sha512-D0ZqgD8pbbe8vENLunoIWH4zmdcG4N/B5Xsx2Nta2oVsoftva9uL+9Ci/J9pHsZzkl+jXFdo3xAlGAuWfaTK0w==}
+  /@tabler/icons-react@2.44.0(react@18.2.0):
+    resolution: {integrity: sha512-10qwrqJ/QBNgY4YYer9PjWmCwm3wv9aVK8kGAkFKkwu6UJURVLZ2ea+oFh5j6vSXnA1zMtUG+X8anR5fZ67Isw==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
-      '@tabler/icons': 2.43.0
+      '@tabler/icons': 2.44.0
       prop-types: 15.8.1
       react: 18.2.0
     dev: false
 
-  /@tabler/icons@2.43.0:
-    resolution: {integrity: sha512-afToJMJj31Q9Put1/saemluLBvWhgzsF59QM/mJZZ7LLHW12ViumyQIwA31SRCH/HsYBEoRp2qHFt0QwIFWDFw==}
+  /@tabler/icons@2.44.0:
+    resolution: {integrity: sha512-WPPtihDcAwEm1QZM9MXQw6+r/R2/qx7KMU1eegsi9DsqBLAb0W2kbt6e/syvd6j9c+6XNpRVBW1ziGqSWQAWOg==}
     dev: false
 
   /@types/body-parser@1.19.2:
