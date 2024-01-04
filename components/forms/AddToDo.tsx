@@ -50,7 +50,8 @@ const AddToDo = (
 			targetDateString: dayjs(targetDate).format('DD/MM/YYYY HH:mm'),
 			categoryId: values.categoryId,
 			completed: values.completed,
-			completedDate: new Date()
+			completedDate: new Date(),
+			category: ''
 		}
 
 		const newToDo: IToDo | null = await addToDo(payload)
