@@ -9,6 +9,7 @@ export interface IToDo {
 	completed: boolean
 	completedDate: Date
 	categoryId: string
+	category: string
 }
 interface ToDoClass {
 	_id: mongoose.Types.ObjectId
