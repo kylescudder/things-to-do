@@ -95,6 +95,7 @@ const AddToDo = (
 				radius="md"
 				size="md"
 				clearable
+				searchable
 				transitionProps={{ transition: 'pop-bottom-left', duration: 200 }}
 				label="Category"
 				placeholder="Pick one"
