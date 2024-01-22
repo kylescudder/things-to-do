@@ -57,6 +57,7 @@ const AddToDo = (
 		const newToDo: IToDo | null = await addToDo(payload)
 		if (newToDo) {
 			props.todoAdded(newToDo)
+			form.values.text = ''
 			router.push(`/list/${newToDo.categoryId}`)
 		}
 	}
