@@ -14,18 +14,32 @@ export async function getToDos (id: string): Promise<IToDo[] | null> {
 		await connectToDB()
 
 		const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000) // Calculate the date 1 hour ago
-		const todos: IToDo[] = await ToDo.find({
-			categoryId: new mongoose.Types.ObjectId(id),
-			$or: [
-				{ completed: true, completedDate: { $gte: oneHourAgo } },
-				{ completed: false }
-			]
-		})
-			.sort({
-				completed: 1,
-				targetDate: 1
-			})
-			.lean()
+
+		const todos: IToDo[] = await ToDo.aggregate([
+			{
+				$match: {
+					categoryId: new mongoose.Types.ObjectId(id),
+					$or: [
+						{ completed: true, completedDate: { $gte: oneHourAgo } },
+						{ completed: false },
+					],
+				},
+			},
+			{
+				$addFields: {
+					targetDateMinute: {
+						$minute: "$targetDate",
+					},
+				},
+			},
+			{
+				$sort: {
+					completed: 1,
+					targetDateMinute: -1,
+					text: 1,
+				},
+			},
+		]);
 
 		if (todos !== undefined) {
 			todos.forEach((todo) => {
@@ -38,7 +52,7 @@ export async function getToDos (id: string): Promise<IToDo[] | null> {
 				}
 			})
 		}
-
+console.log(todos)
 		return todos
 	} catch (error: any) {
 		throw new Error(`Failed to get todos: ${error.message}`)
