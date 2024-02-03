@@ -15,7 +15,7 @@
     "@hookform/resolvers": "^3.3.4",
     "@mantine/core": "^6.0.20",
     "@mantine/dates": "^6.0.20",
-    "@mantine/form": "^7.4.2",
+    "@mantine/form": "^7.5.1",
     "@mantine/hooks": "^6.0.20",
     "@mantine/modals": "^6.0.20",
     "@mantine/next": "^6.0.21",
@@ -26,7 +26,7 @@
     "@serwist/precaching": "^8.4.4",
     "@serwist/sw": "^8.4.4",
     "@tabler/icons-react": "^2.46.0",
-    "@types/node": "20.11.5",
+    "@types/node": "20.11.16",
     "@types/react": "18.2.48",
     "@types/react-dom": "18.2.18",
     "autoprefixer": "10.4.17",
@@ -34,7 +34,7 @@
     "clsx": "^2.1.0",
     "dayjs": "^1.11.10",
     "eslint-config-next": "14.1.0",
-    "mongoose": "^8.1.0",
+    "mongoose": "^8.1.1",
     "next": "14.1.0",
     "next-pwa": "^5.6.0",
     "next-themes": "^0.2.1",
@@ -65,6 +65,6 @@
     "postcss-simple-vars": "^7.0.1",
     "prettier": "^3.2.4",
     "typescript": "5.3.3",
-    "webpack": "^5.89.0"
+    "webpack": "^5.90.1"
   }
 }
