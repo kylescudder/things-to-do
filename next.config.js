@@ -1,7 +1,6 @@
-const withPWA = require("@ducanh2912/next-pwa").default({
-  dest: "public",
-  register: true,
-  skipWaiting: true,
+const withSerwist = require("@serwist/next").default({
+  swSrc: "app/sw.ts",
+  swDest: "public/sw.js",
 });
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -31,8 +30,7 @@ const nextConfig = {
   },
 };
 
-module.exports = withPWA(nextConfig);
-
+module.exports = withSerwist(nextConfig);
 
 // Injected content via Sentry wizard below
 
