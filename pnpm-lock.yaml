@@ -81,8 +81,8 @@ dependencies:
     specifier: 14.1.0
     version: 14.1.0(eslint@8.57.0)(typescript@5.4.3)
   mongoose:
-    specifier: ^8.1.1
-    version: 8.1.1
+    specifier: ^8.2.4
+    version: 8.2.4
   next:
     specifier: 14.1.4
     version: 14.1.4(@babel/core@7.22.15)(react-dom@18.2.0)(react@18.2.0)
@@ -5623,8 +5623,8 @@ packages:
       mongodb-connection-string-url: 3.0.0
     dev: false
 
-  /mongoose@8.1.1:
-    resolution: {integrity: sha512-DbLb0NsiEXmaqLOpEz+AtAsgwhRw6f25gwa1dF5R7jj6lS1D8X6uTdhBSC8GDVtOwe5Tfw2EL7nTn6hiJT3Bgg==}
+  /mongoose@8.2.4:
+    resolution: {integrity: sha512-da/r6zpG+2eAXuhBGUnL6jcBd03zlytoCc5/wq+LyTsmrY9hhPQmSpnugwnfqldtBmUOhB6iMLoV4hNtHRq+ww==}
     engines: {node: '>=16.20.1'}
     dependencies:
       bson: 6.2.0
