@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: "Ubuntu", sans-serif;
+  font-family: 'Ubuntu', sans-serif;
 }
 @layer components {
   .topbar {
@@ -53,7 +53,7 @@ body {
 .avatar:before {
   position: absolute;
   left: 0;
-  content: "";
+  content: '';
   background: #fff;
   height: 40px;
 }
@@ -98,7 +98,7 @@ body {
   position: relative;
 }
 .completed::after {
-  content: " ";
+  content: ' ';
   position: absolute;
   top: 50%;
   height: 3px;
@@ -204,7 +204,7 @@ body {
   transition: all 150ms ease-in;
 }
 .toggle--label-background:before {
-  content: "";
+  content: '';
   position: absolute;
   top: -1px;
   width: 10px;
@@ -215,7 +215,7 @@ body {
   transition: all 150ms ease-in;
 }
 .toggle--label-background:after {
-  content: "";
+  content: '';
   position: absolute;
   top: 1px;
   width: 10px;
@@ -230,7 +230,7 @@ body {
   animation-duration: 350ms;
   animation-fill-mode: forwards;
   transition: all 350ms ease-in;
-  content: "";
+  content: '';
   width: 20px;
   height: 20px;
   border: 1px solid var(--yellow-border);
@@ -244,8 +244,9 @@ body {
   transition-delay: 0ms;
   transition: all 250ms ease-in;
   position: absolute;
-  content: "";
-  box-shadow: var(--gray-dots) -6.5px 0 0 0.75px,
+  content: '';
+  box-shadow:
+    var(--gray-dots) -6.5px 0 0 0.75px,
     var(--gray-dots) -8px 4px 0 0.1px;
   left: 38px;
   top: 5px;
