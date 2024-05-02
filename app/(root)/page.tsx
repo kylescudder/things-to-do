@@ -16,14 +16,14 @@ async function Page(): Promise<JSX.Element | null> {
   const userInfo = await getUserInfo(user.id)
   if (!userInfo?.onboarded) redirect('/onboarding')
 
-	const overdueToDos: IToDo[] | null = await getOverdueToDos(userInfo._id)
+  const overdueToDos: IToDo[] | null = await getOverdueToDos(userInfo._id)
 
-	return (
-		<div>
-			<p className='text-2xl'>Overdue</p>
-			<ToDoList todos={overdueToDos} />
-		</div>
-	)
+  return (
+    <div>
+      <p className='text-2xl'>Overdue</p>
+      <ToDoList todos={overdueToDos} />
+    </div>
+  )
 }
 
 export default Page

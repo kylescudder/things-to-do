@@ -1,7 +1,7 @@
-const withSerwist = require("@serwist/next").default({
-  swSrc: "app/sw.ts",
-  swDest: "public/sw.js",
-});
+const withSerwist = require('@serwist/next').default({
+  swSrc: 'app/sw.ts',
+  swDest: 'public/sw.js'
+})
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
@@ -23,14 +23,14 @@ const nextConfig = {
         hostname: 'images.clerk.dev'
       },
       {
-        protocol: "https",
-        hostname: "placehold.co",
-      },
-    ],
-  },
-};
+        protocol: 'https',
+        hostname: 'placehold.co'
+      }
+    ]
+  }
+}
 
-module.exports = withSerwist(nextConfig);
+module.exports = withSerwist(nextConfig)
 
 // Injected content via Sentry wizard below
 

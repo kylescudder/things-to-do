@@ -44,30 +44,34 @@ export default function ToDoList(props: {
     })
   }
 
-	if (!todoList) {
-		return <p>Loading...</p>
-	}
-	return (
-		<div>
-			{(() => {
-				let currentCategory = ''
-				return todoList.map((todoItem: IToDo) => {
-					let label = null
-					if (!todoItem.category) {
-						todoItem.category = 'Uncategorized'
-					}
-					if (todoItem.category !== currentCategory) {
-						label = <div><p className='font-bold text-1xl'>{todoItem.category}</p></div>
-						currentCategory = todoItem.category
-					}
-					return (
-						<div key={todoItem._id}>
-							{label}
-							<ToDo func={pullData} todoItem={todoItem} />
-						</div>
-					)
-				})
-			})()}
-		</div>
-	)
+  if (!todoList) {
+    return <p>Loading...</p>
+  }
+  return (
+    <div>
+      {(() => {
+        let currentCategory = ''
+        return todoList.map((todoItem: IToDo) => {
+          let label = null
+          if (!todoItem.category) {
+            todoItem.category = 'Uncategorized'
+          }
+          if (todoItem.category !== currentCategory) {
+            label = (
+              <div>
+                <p className='font-bold text-1xl'>{todoItem.category}</p>
+              </div>
+            )
+            currentCategory = todoItem.category
+          }
+          return (
+            <div key={todoItem._id}>
+              {label}
+              <ToDo func={pullData} todoItem={todoItem} />
+            </div>
+          )
+        })
+      })()}
+    </div>
+  )
 }

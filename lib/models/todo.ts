@@ -2,14 +2,14 @@ import mongoose from 'mongoose'
 
 // 1. Create an interface representing a document in MongoDB.
 export interface IToDo {
-	_id: string
-	text: string
-	targetDate: Date
-	targetDateString: string
-	completed: boolean
-	completedDate: Date
-	categoryId: string
-	category: string
+  _id: string
+  text: string
+  targetDate: Date
+  targetDateString: string
+  completed: boolean
+  completedDate: Date
+  categoryId: string
+  category: string
 }
 interface ToDoClass {
   _id: mongoose.Types.ObjectId
